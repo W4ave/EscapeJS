@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://qqdxv7dalcmd"]
+
+[ext_resource type="Script" uid="uid://cmdws8h7q1c3p" path="res://progress_bar.gd" id="1_chxro"]
+
+[node name="UI_staminaBar_PB" type="Control" unique_id=1801722609]
+layout_mode = 3
+anchor_right = 0.023000002
+anchor_bottom = 0.027
+offset_right = -9.496002
+offset_bottom = -10.496
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=273232633]
+layout_mode = 1
+anchors_preset = -1
+offset_right = 31.0
+offset_bottom = 5.0
+show_percentage = false
+script = ExtResource("1_chxro")

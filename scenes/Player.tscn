@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cgxji6k4a6m2o"]
 
-[ext_resource type="Script" uid="uid://b3pibv2qdalan" path="res://scripts/main_character.gd" id="1_ig48j"]
+[ext_resource type="Script" uid="uid://b3pibv2qdalan" path="res://scripts/Player.gd" id="1_ig48j"]
 [ext_resource type="Texture2D" uid="uid://ebswfxj884mg" path="res://assets/sprites/knight.png" id="1_nrcqd"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig48j"]
 size = Vector2(13, 19)
