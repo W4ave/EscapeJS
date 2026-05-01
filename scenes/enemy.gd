@@ -1,35 +1,65 @@
 extends CharacterBody2D
 
-@onready var ray = $RayCast2D 
-@onready var view_area: Area2D = $Flip_h_Pivot/Area2D
+@export var speed: float = 110.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+var target: Node2D = null
 
-func _ready():
-	ray.add_exception(self)
+@onready var detection_area: Area2D = $DetectionArea
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+@onready var ray: RayCast2D = $RayCast2D
+@onready var hit_area: Area2D = $HitArea
 
-func _physics_process(_delta: float) -> void:
-	var targets = view_area.get_overlapping_bodies()
-	
-	for target in targets:
-		if target.is_in_group("Player"):
-			if is_player_visible(target):
-				print("플레이어 발견!")
-			else:
-				# 플레이어가 Area2D 안에는 있지만 레이저가 벽에 막힌 상태
-				print("벽 뒤에 숨음")
 
-func is_player_visible(target: Node2D) -> bool:
-	var target_node = target.get_node("LookAtPoint")
-	ray.target_position = ray.to_local(target_node.global_position)
+func _ready() -> void:
+	detection_area.body_entered.connect(_on_body_entered)
+	detection_area.body_exited.connect(_on_body_exited)
+	hit_area.body_entered.connect(_on_hit)
+
+
+func _physics_process(delta: float) -> void:
+	if target and _can_see_target():
+		_chase()
+	else:
+		velocity = Vector2.ZERO
+		anim.play("idle")
+
+	move_and_slide()
+
+
+func _can_see_target() -> bool:
+	ray.target_position = to_local(target.global_position)
 	ray.force_raycast_update()
 
-	if ray.is_colliding():
-		var collider = ray.get_collider()
-		# 레이저가 부딪힌 게 플레이어(target) 본체인지 확인
-		if collider == target:
-			return true
-	return false
-	
+	if not ray.is_colliding():
+		return true
+	return ray.get_collider() == target
+
+
+func _chase() -> void:
+	var direction = (target.global_position - global_position).normalized()
+	velocity = direction * speed
+	_update_animation(direction)
+
+
+func _update_animation(dir: Vector2) -> void:
+	if dir.x >= 0:
+		anim.flip_h = false
+	else:
+		anim.flip_h = true
+
+	anim.play("walk_side")
+
+
+func _on_hit(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		target = body
+
+
+func _on_body_exited(body: Node2D) -> void:
+	if body == target:
+		target = null

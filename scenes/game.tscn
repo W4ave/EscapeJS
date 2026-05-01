@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cgxji6k4a6m2o" path="res://scenes/Player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://k6gav4l4urko" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://qqdxv7dalcmd" path="res://scenes/ui_stamina_bar_pb.tscn" id="3_lnu2h"]
-[ext_resource type="PackedScene" uid="uid://ce1xedaiv2cch" path="res://scenes/Enemy.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bfnlvhfnfyqou" path="res://scenes/StaminaBar.tscn" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://ce1xedaiv2cch" path="res://scenes/enemy.tscn" id="4_lbhrr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -152,12 +152,6 @@ position = Vector2(0, 1)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
-[node name="UI_staminaBar_PB" parent="Player" unique_id=1801722609 instance=ExtResource("3_lnu2h")]
-offset_left = -15.0
-offset_top = 12.0
-offset_right = -15.0
-offset_bottom = 12.0
-
 [node name="TileMap" type="TileMap" parent="." unique_id=90550123]
 tile_set = SubResource("TileSet_lbhrr")
 format = 2
@@ -165,3 +159,8 @@ layer_0/tile_data = PackedInt32Array(-65540, 0, 1, -4, 0, 1, 65532, 0, 1, 131068
 
 [node name="Enemy" parent="." unique_id=1001022762 instance=ExtResource("4_lbhrr")]
 position = Vector2(-170, 27)
+
+[node name="Enemy2" parent="." unique_id=1352307495 instance=ExtResource("4_lbhrr")]
+position = Vector2(128, 59)
+
+[node name="StaminaBar" parent="." unique_id=1370015477 instance=ExtResource("4_iywne")]
