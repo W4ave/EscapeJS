@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://ce1xedaiv2cch"]
+
+[ext_resource type="Texture2D" uid="uid://chfocmvjrm135" path="res://assets/sprites/slime_green.png" id="1_3gvst"]
+[ext_resource type="Script" uid="uid://cr2g8yu4wjeu6" path="res://scenes/enemy.gd" id="1_55jtl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55jtl"]
+size = Vector2(14, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpr68"]
+atlas = ExtResource("1_3gvst")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft8do"]
+atlas = ExtResource("1_3gvst")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wwv6"]
+atlas = ExtResource("1_3gvst")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vja8"]
+atlas = ExtResource("1_3gvst")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_iwav8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpr68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft8do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wwv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vja8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_55jtl"]
+radius = 109.38464
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1001022762]
+script = ExtResource("1_55jtl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=304422850]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_55jtl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1392725131]
+sprite_frames = SubResource("SpriteFrames_iwav8")
+frame_progress = 0.2544686
+
+[node name="Flip_h_Pivot" type="Marker2D" parent="." unique_id=668187842]
+
+[node name="Area2D" type="Area2D" parent="Flip_h_Pivot" unique_id=596066812]
+
+[node name="SightArea" type="CollisionShape2D" parent="Flip_h_Pivot/Area2D" unique_id=1252276033]
+shape = SubResource("CircleShape2D_55jtl")
+debug_color = Color(0.9098039, 0, 0.08235294, 0.050980393)
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=816111869]
+position = Vector2(0, 4)
+hit_from_inside = true

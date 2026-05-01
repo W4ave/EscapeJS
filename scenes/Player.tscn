@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://b3pibv2qdalan" path="res://scripts/Player.gd" id="1_ig48j"]
 [ext_resource type="Texture2D" uid="uid://ebswfxj884mg" path="res://assets/sprites/knight.png" id="1_nrcqd"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ig48j"]
-size = Vector2(13, 19)
+size = Vector2(11, 2.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tqm6u"]
 atlas = ExtResource("1_nrcqd")
@@ -43,14 +42,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="main_character" type="CharacterBody2D" unique_id=320546620]
+[node name="Player" type="CharacterBody2D" unique_id=320546620 groups=["Player"]]
 script = ExtResource("1_ig48j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1257278321]
-position = Vector2(-0.5, 0.5)
+position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_ig48j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884390793]
-position = Vector2(0, -2)
+position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_0d0nc")
 frame_progress = 0.60629827
+
+[node name="LookAtPoint" type="Marker2D" parent="." unique_id=286981626]
