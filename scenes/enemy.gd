@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 var target: Node2D = null
 
+
+
 @onready var detection_area: Area2D = $DetectionArea
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray: RayCast2D = $RayCast2D
@@ -51,6 +53,10 @@ func _update_animation(dir: Vector2) -> void:
 
 
 func _on_hit(body: Node2D) -> void:
+	if body.is_in_group("directionTileMap"):
+		
+			pass
+	
 	if body.is_in_group("player"):
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 

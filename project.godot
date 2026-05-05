@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 global="*uid://cvv8ch0lfjfso"
 
+[global_group]
+
+player=""
+directionTileMap=""
+
 [input]
 
 ui_left={
