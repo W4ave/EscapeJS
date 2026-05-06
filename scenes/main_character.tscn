@@ -55,6 +55,7 @@ position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_ig48j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884390793]
+light_mask = 2
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_0d0nc")
 frame_progress = 0.60629827
