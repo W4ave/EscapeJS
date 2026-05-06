@@ -42,6 +42,11 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_ig48j"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tqm6u"]
+gradient = SubResource("Gradient_ig48j")
+
 [node name="main_character" type="CharacterBody2D" unique_id=320546620]
 script = ExtResource("1_ig48j")
 
@@ -53,3 +58,12 @@ shape = SubResource("RectangleShape2D_ig48j")
 position = Vector2(0, -2)
 sprite_frames = SubResource("SpriteFrames_0d0nc")
 frame_progress = 0.60629827
+
+[node name="Flashlight" type="PointLight2D" parent="." unique_id=1055564613]
+color = Color(1, 0.916, 0.37, 1)
+energy = 1.5
+range_layer_max = 1
+texture = SubResource("GradientTexture2D_tqm6u")
+height = 1.0
+
+[node name="RayCast2D" type="RayCast2D" parent="Flashlight" unique_id=1915420977]
