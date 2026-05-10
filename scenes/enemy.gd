@@ -18,7 +18,7 @@ func _ready() -> void:
 	hit_area.body_entered.connect(_on_hit)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if target and _can_see_target():
 		_chase()
 	else:
