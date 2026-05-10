@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://b5ptc2r2whc3n"]
+
+[ext_resource type="Script" uid="uid://cdyuhvxgmj7ww" path="res://inventory.gd" id="1_mjwuh"]
+
+[node name="HUD" type="CanvasLayer" unique_id=940715873]
+
+[node name="Inventory" type="Control" parent="." unique_id=1289887485]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 70.0
+offset_top = -100.0
+offset_right = 110.0
+offset_bottom = -60.0
+script = ExtResource("1_mjwuh")
+
+[node name="PanelContainer" type="PanelContainer" parent="Inventory" unique_id=1175682386]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 568.0
+offset_right = 136.0
+offset_bottom = 638.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Inventory/PanelContainer" unique_id=421863305]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Slot1" type="Panel" parent="Inventory/PanelContainer/HBoxContainer" unique_id=502229886]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Inventory/PanelContainer/HBoxContainer/Slot1" unique_id=1857774220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -608.0
+offset_bottom = -608.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Slot2" type="Panel" parent="Inventory/PanelContainer/HBoxContainer" unique_id=184095388]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
