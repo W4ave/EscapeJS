@@ -52,13 +52,9 @@ func _update_animation(dir: Vector2) -> void:
 	anim.play("walk_side")
 
 
-func _on_hit(body: Node2D) -> void:
-	if body.is_in_group("directionTileMap"):
-		
-			pass
-	
+func _on_hit(body: Node2D) -> void:	
 	if body.is_in_group("player"):
-		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")
 
 
 func _on_body_entered(body: Node2D) -> void:

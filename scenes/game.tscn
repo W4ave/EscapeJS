@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cgxji6k4a6m2o" path="res://scenes/Player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://k6gav4l4urko" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bfnlvhfnfyqou" path="res://scenes/StaminaBar.tscn" id="4_iywne"]
-[ext_resource type="PackedScene" path="res://scenes/enemy.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bnqfgmfi6hv47" path="res://scenes/enemy.tscn" id="4_lbhrr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -142,6 +142,9 @@ sources/0 = SubResource("TileSetAtlasSource_lnu2h")
 
 [node name="Game" type="Node2D" unique_id=257069488]
 position = Vector2(1, -1)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1818554032]
+color = Color(0.0032739982, 0, 0.15667373, 1)
 
 [node name="Player" parent="." unique_id=320546620 instance=ExtResource("1_uwrxv")]
 z_index = 1
