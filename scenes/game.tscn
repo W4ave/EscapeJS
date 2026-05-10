@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://dnn7vex80lk2v"]
 
-[ext_resource type="PackedScene" uid="uid://cgxji6k4a6m2o" path="res://scenes/main_character.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://b5ptc2r2whc3n" path="res://scripts/Inventory.tscn" id="2_yqjtg"]
+
+[ext_resource type="PackedScene" uid="uid://cgxji6k4a6m2o" path="res://scenes/Player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://k6gav4l4urko" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bfnlvhfnfyqou" path="res://scenes/StaminaBar.tscn" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://ds8y70qyoedth" path="res://scenes/enemy.tscn" id="4_lbhrr"]
+
 
 [sub_resource type="Environment" id="Environment_uwrxv"]
 background_mode = 1
@@ -10,10 +14,13 @@ ambient_light_energy = 0.0
 [node name="Game" type="Node2D" unique_id=257069488]
 position = Vector2(1, -1)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=323035880]
-environment = SubResource("Environment_uwrxv")
 
-[node name="main_character" parent="." unique_id=320546620 instance=ExtResource("1_uwrxv")]
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=301841668]
+color = Color(0.04411272, 0.022667347, 0.2838633, 1)
+
+[node name="Player" parent="." unique_id=320546620 instance=ExtResource("1_uwrxv")]
+z_index = 1
+
 position = Vector2(0, -1)
 
 [node name="Camera2D" type="Camera2D" parent="main_character" unique_id=1458416397]
