@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bfnlvhfnfyqou"]
+
+[ext_resource type="Script" uid="uid://byt8tww40aruj" path="res://scripts/stamina_bar.gd" id="1_174nr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bof4c"]
+bg_color = Color(0.9612289, 0.961229, 0.9612289, 1)
+
+[node name="StaminaBar" type="CanvasLayer" unique_id=1370015477]
+
+[node name="StaminaBar" type="Control" parent="." unique_id=1939081186]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -66.0
+offset_right = 20.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_174nr")
+
+[node name="Label" type="Label" parent="StaminaBar" unique_id=1560797281]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 8.0
+offset_right = 42.0
+offset_bottom = 31.0
+
+[node name="BG" type="Panel" parent="StaminaBar" unique_id=1542504284]
+layout_mode = 0
+offset_left = -89.0
+offset_top = 6.0
+offset_right = 126.0
+offset_bottom = 34.0
+
+[node name="Bar" type="ProgressBar" parent="StaminaBar" unique_id=906434594]
+layout_mode = 0
+offset_left = -86.0
+offset_top = 9.0
+offset_right = 123.0
+offset_bottom = 31.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_bof4c")
+show_percentage = false
