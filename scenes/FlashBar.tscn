@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dycfbl3p07i3g"]
+
+[ext_resource type="Script" uid="uid://b56bgk1jmjmhv" path="res://scripts/flash_bar.gd" id="1_sw3ri"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bof4c"]
+bg_color = Color(0.9607843, 0.8862745, 0.54509807, 1)
+shadow_color = Color(1, 0.96862745, 0.5686275, 0.26666668)
+shadow_size = 13
+
+[node name="FlashBar" type="CanvasLayer" unique_id=1370015477]
+
+[node name="FlashBar" type="Control" parent="." unique_id=1939081186]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -99.0
+offset_right = 20.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_sw3ri")
+
+[node name="BG" type="Panel" parent="FlashBar" unique_id=1542504284]
+layout_mode = 0
+offset_left = -89.0
+offset_top = 6.0
+offset_right = 126.0
+offset_bottom = 34.0
+
+[node name="Bar" type="ProgressBar" parent="FlashBar" unique_id=906434594]
+layout_mode = 0
+offset_left = -86.0
+offset_top = 9.0
+offset_right = 123.0
+offset_bottom = 31.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_bof4c")
+show_percentage = false

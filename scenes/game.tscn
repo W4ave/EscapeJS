@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cgxji6k4a6m2o" path="res://scenes/Player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://k6gav4l4urko" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bfnlvhfnfyqou" path="res://scenes/StaminaBar.tscn" id="4_iywne"]
-[ext_resource type="PackedScene" uid="uid://bnqfgmfi6hv47" path="res://scenes/enemy.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bnqfgmfi6hv47" path="res://scenes/Enemy.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://dycfbl3p07i3g" path="res://scenes/FlashBar.tscn" id="5_iywne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -164,3 +165,5 @@ layer_0/tile_data = PackedInt32Array(-65540, 0, 1, -4, 0, 1, 65532, 0, 1, 131068
 
 [node name="Enemy" parent="." unique_id=1001022762 instance=ExtResource("4_lbhrr")]
 position = Vector2(-262, 28)
+
+[node name="FlashBar" parent="." unique_id=1433893650 instance=ExtResource("5_iywne")]
