@@ -16,6 +16,7 @@ func _ready() -> void:
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
 	hit_area.body_entered.connect(_on_hit)
+	
 
 
 func _physics_process(_delta: float) -> void:
@@ -54,7 +55,8 @@ func _update_animation(dir: Vector2) -> void:
 
 func _on_hit(body: Node2D) -> void:	
 	if body.is_in_group("player"):
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")
+		var game = get_tree().current_scene
+		game.damage_player()
 
 
 func _on_body_entered(body: Node2D) -> void:
