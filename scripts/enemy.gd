@@ -4,18 +4,17 @@ extends CharacterBody2D
 
 var target: Node2D = null
 
-
-
+@onready var collision : CollisionShape2D = $CollisionShape2D
 @onready var detection_area: Area2D = $DetectionArea
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray: RayCast2D = $RayCast2D
 @onready var hit_area: Area2D = $HitArea
 
-
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_body_entered)
 	detection_area.body_exited.connect(_on_body_exited)
 	hit_area.body_entered.connect(_on_hit)
+	
 
 
 func _physics_process(_delta: float) -> void:
@@ -54,7 +53,19 @@ func _update_animation(dir: Vector2) -> void:
 
 func _on_hit(body: Node2D) -> void:	
 	if body.is_in_group("player"):
-		get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")
+		var game = get_tree().current_scene
+		game.damage_player()
+		
+		var Spawnpoint = $"../Spawnpoint"
+		
+		visible = false
+		collision.set_deferred("disable", true)
+		
+		await get_tree().create_timer(1.5).timeout
+		global_position = Spawnpoint.global_position
+		
+		visible = true
+		collision.set_deferred("disable", false)
 
 
 func _on_body_entered(body: Node2D) -> void:

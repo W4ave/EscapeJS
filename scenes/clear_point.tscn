@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://vg0ekt0rnmux"]
+
+[ext_resource type="Script" uid="uid://ciudclqh1wimi" path="res://scripts/clear_point.gd" id="1_qawvp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6o5nf"]
+
+[node name="ClearPoint" type="Area2D" unique_id=1226530692]
+script = ExtResource("1_qawvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1808822544]
+scale = Vector2(0.6, 0.6)
+shape = SubResource("RectangleShape2D_6o5nf")

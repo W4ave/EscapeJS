@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="GameMaking"
-run/main_scene="uid://dnn7vex80lk2v"
+run/main_scene="uid://cnw5dqof1tt0t"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 global="*uid://cvv8ch0lfjfso"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [global_group]
 

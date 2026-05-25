@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://coqq6khkj5xp1"]
 
-[ext_resource type="Script" uid="uid://dxd17ss6lmeve" path="res://scenes/game_over.gd" id="1_xeevv"]
-[ext_resource type="FontFile" uid="uid://ckt4bwns0dc8p" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_tbwuq"]
-[ext_resource type="FontFile" uid="uid://bg0gjqeb0sx3b" path="res://assets/fonts/PixelOperator8.ttf" id="3_racf3"]
+[ext_resource type="Script" uid="uid://dxd17ss6lmeve" path="res://scripts/game_over.gd" id="1_xeevv"]
+[ext_resource type="FontFile" uid="uid://d37j3eksc01qg" path="res://assets/fonts/Galmuri7.ttf" id="2_wqhvx"]
 
 [node name="GameOver" type="Node2D" unique_id=477588278]
 script = ExtResource("1_xeevv")
@@ -22,13 +21,13 @@ theme_override_constants/separation = 30
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("2_tbwuq")
+theme_override_fonts/font = ExtResource("2_wqhvx")
 theme_override_font_sizes/font_size = 64
 text = "GAME OVER"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer" unique_id=913014994]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_racf3")
+theme_override_fonts/font = ExtResource("2_wqhvx")
 theme_override_font_sizes/font_size = 48
 text = "RESTART"

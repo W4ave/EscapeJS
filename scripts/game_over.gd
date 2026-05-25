@@ -5,7 +5,12 @@ extends Node2D
 
 func _ready() -> void:
 	retry_btn.pressed.connect(_on_retry)
+	
+	
 
 
 func _on_retry() -> void:
+	queue_free()  # game_over 씬 먼저 제거
 	get_tree().change_scene_to_file("res://scenes/game.tscn")  # 메인 씬 경로로 변경
+	
+	global.life = 3
