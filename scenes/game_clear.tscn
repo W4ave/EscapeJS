@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://7m80y2focnjs"]
+
+[ext_resource type="FontFile" uid="uid://y33dttqvvkxq" path="res://assets/fonts/Galmuri14.ttf" id="1_i4erx"]
+[ext_resource type="FontFile" uid="uid://7dh61877sxnr" path="res://assets/fonts/Galmuri11.ttf" id="2_jj3lk"]
+[ext_resource type="FontFile" uid="uid://csabgnvs6yfmx" path="res://assets/fonts/Galmuri11-Bold.ttf" id="3_nq3ck"]
+[ext_resource type="Script" uid="uid://bv8c4trnq85ye" path="res://scenes/ranking.gd" id="4_jj3lk"]
+
+[node name="game_clear" type="Node2D" unique_id=1856722240]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1587878309]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=208477508]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 113.0
+offset_top = -86.0
+offset_right = 313.0
+offset_bottom = 86.0
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Title" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=857205285]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_i4erx")
+theme_override_font_sizes/font_size = 65
+text = "성공"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1141524447]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_jj3lk")
+theme_override_font_sizes/font_size = 48
+text = "처음으로"
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=631642059]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 1.0
+offset_top = 123.0
+offset_right = 1153.0
+offset_bottom = 287.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2004848676]
+offset_left = 580.0
+offset_top = 88.0
+offset_right = 870.0
+offset_bottom = 161.0
+
+[node name="Ranking" type="Label" parent="VBoxContainer" unique_id=1993607571]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_nq3ck")
+theme_override_font_sizes/font_size = 62
+text = "[ 순위표 ]"
+horizontal_alignment = 1
+script = ExtResource("4_jj3lk")
+
+[node name="1st" type="Label" parent="VBoxContainer/Ranking" unique_id=808665380]
+layout_mode = 0
+offset_left = -168.0
+offset_top = 114.0
+offset_right = 509.0
+offset_bottom = 187.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 0.52156866, 1)
+theme_override_fonts/font = ExtResource("3_nq3ck")
+theme_override_font_sizes/font_size = 45
+text = "1위 : OOO / 00:00.00"
+horizontal_alignment = 1
+
+[node name="2nd" type="Label" parent="VBoxContainer/Ranking" unique_id=465740657]
+layout_mode = 0
+offset_left = -179.0
+offset_top = 213.0
+offset_right = 513.0
+offset_bottom = 286.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.8089983, 0.8089983, 0.8089982, 1)
+theme_override_fonts/font = ExtResource("3_nq3ck")
+theme_override_font_sizes/font_size = 45
+text = "2위 : OOO / 00:00.00"
+horizontal_alignment = 1
+
+[node name="3rd" type="Label" parent="VBoxContainer/Ranking" unique_id=1907696042]
+layout_mode = 0
+offset_left = -178.0
+offset_top = 316.0
+offset_right = 514.0
+offset_bottom = 389.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_nq3ck")
+theme_override_font_sizes/font_size = 45
+text = "3위 : OOO / 00:00.00"
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=860079573]
+z_index = -1
+offset_left = 368.0
+offset_top = -27.0
+offset_right = 1368.0
+offset_bottom = 9973.0

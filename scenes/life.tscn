@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d4myj1r7fu0dp"]
+
+[ext_resource type="Script" uid="uid://dbkq5c7to0d5q" path="res://scripts/life.gd" id="1_tf86k"]
+[ext_resource type="FontFile" uid="uid://d37j3eksc01qg" path="res://assets/fonts/Galmuri7.ttf" id="2_vhvcv"]
+
+[node name="Life" type="CanvasLayer" unique_id=1487275868]
+script = ExtResource("1_tf86k")
+
+[node name="Label" type="Label" parent="." unique_id=1619426958]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -90.0
+offset_top = 32.0
+offset_bottom = 59.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_vhvcv")
+theme_override_font_sizes/font_size = 24
+text = "Life : 3"

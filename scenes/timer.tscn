@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjruleb2827eu"]
 
 [ext_resource type="Script" uid="uid://csdxksx6i0so1" path="res://scripts/timer.gd" id="1_5lxq6"]
-[ext_resource type="FontFile" uid="uid://ckt4bwns0dc8p" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_g5y8c"]
+[ext_resource type="FontFile" uid="uid://d37j3eksc01qg" path="res://assets/fonts/Galmuri7.ttf" id="2_5lxq6"]
 
 [node name="Timer" type="CanvasLayer" unique_id=1643152014]
 script = ExtResource("1_5lxq6")
@@ -13,6 +13,6 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
-theme_override_fonts/font = ExtResource("2_g5y8c")
-theme_override_font_sizes/font_size = 20
+theme_override_fonts/font = ExtResource("2_5lxq6")
+theme_override_font_sizes/font_size = 24
 text = "00:00"
