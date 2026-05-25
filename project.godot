@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameMaking"
-run/main_scene="uid://dnn7vex80lk2v"
+run/main_scene="uid://cnw5dqof1tt0t"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

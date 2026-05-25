@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://d37j3eksc01qg" path="res://assets/fonts/Galmuri7.ttf" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://cjruleb2827eu" path="res://scenes/timer.tscn" id="2_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://k6gav4l4urko" path="res://assets/sprites/world_tileset.png" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://vg0ekt0rnmux" path="res://scenes/clear_point.tscn" id="3_vtaks"]
 [ext_resource type="PackedScene" uid="uid://d4myj1r7fu0dp" path="res://scenes/life.tscn" id="4_gee14"]
 [ext_resource type="PackedScene" uid="uid://bfnlvhfnfyqou" path="res://scenes/StaminaBar.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://bnqfgmfi6hv47" path="res://scenes/Enemy.tscn" id="4_lbhrr"]
@@ -162,6 +163,9 @@ F : 손전등 키기
 WASD : 이동
 목숨 : 3개"
 autowrap_trim_flags = 64
+
+[node name="ClearPoint" parent="." unique_id=1226530692 instance=ExtResource("3_vtaks")]
+position = Vector2(0, 91)
 
 [node name="TileMap" type="TileMap" parent="." unique_id=90550123]
 tile_set = SubResource("TileSet_lbhrr")

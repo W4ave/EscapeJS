@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://cnw5dqof1tt0t"]
+
+[ext_resource type="FontFile" uid="uid://d37j3eksc01qg" path="res://assets/fonts/Galmuri7.ttf" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://vn0wc1yxsyk7" path="res://scripts/main_menu.gd" id="1_tbmy8"]
+[ext_resource type="FontFile" uid="uid://csabgnvs6yfmx" path="res://assets/fonts/Galmuri11-Bold.ttf" id="2_wu84c"]
+[ext_resource type="Texture2D" uid="uid://pvrcbmdudyuc" path="res://assets/sprites/JSHighSchool.jpg" id="3_8ln24"]
+[ext_resource type="Script" uid="uid://c1ec02x67xg4y" path="res://scripts/JsImage.gd" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://n1d2wrqyp0cf" path="res://assets/sprites/JsLogo.png" id="5_8ln24"]
+[ext_resource type="Script" uid="uid://dur3xog6fq2jj" path="res://scripts/Js_logo_chara.gd" id="5_oa1go"]
+[ext_resource type="Script" uid="uid://dmu32osueow7y" path="res://scripts/JsLogo.gd" id="6_rtw2f"]
+
+[node name="MainMenu" type="Node2D" unique_id=2019131730]
+script = ExtResource("1_tbmy8")
+
+[node name="Text_tutorial" type="Label" parent="." unique_id=93106800]
+z_index = 5
+offset_left = 870.0
+offset_top = 77.0
+offset_right = 1098.0
+offset_bottom = 230.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 32
+text = "Shift : 달리기
+F : 손전등 키기
+WASD : 이동
+목숨 : 3개"
+autowrap_trim_flags = 64
+
+[node name="Panel" type="Panel" parent="Text_tutorial" unique_id=717063504]
+z_index = -1
+layout_mode = 0
+offset_left = -90.0
+offset_top = -77.0
+offset_right = 910.0
+offset_bottom = 9923.0
+
+[node name="StartButton" type="Button" parent="Text_tutorial/Panel" unique_id=1447091411]
+z_index = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 398.0
+offset_right = 372.0
+offset_bottom = 462.0
+theme_override_colors/font_color = Color(0.99926955, 0.91346604, 0.589095, 1)
+theme_override_colors/font_hover_color = Color(0.85005045, 0.8500505, 0.8500512, 1)
+theme_override_fonts/font = ExtResource("2_wu84c")
+theme_override_font_sizes/font_size = 48
+text = "<< 시작하기 >>"
+
+[node name="Title" type="Label" parent="." unique_id=938529504]
+offset_left = 114.0
+offset_top = 77.0
+offset_right = 698.0
+offset_bottom = 189.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 6
+theme_override_fonts/font = ExtResource("2_wu84c")
+theme_override_font_sizes/font_size = 96
+text = "ESCAPE JS "
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=39648399]
+position = Vector2(279.00003, 417)
+scale = Vector2(1.7016667, 1.4970238)
+texture = ExtResource("3_8ln24")
+script = ExtResource("4_rtw2f")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=2125232464]
+script = ExtResource("5_oa1go")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CharacterBody2D" unique_id=1671123632]
+position = Vector2(633, 464)
+texture = ExtResource("5_8ln24")
+script = ExtResource("6_rtw2f")
+
+[connection signal="pressed" from="Text_tutorial/Panel/StartButton" to="." method="_on_start_button_pressed"]
