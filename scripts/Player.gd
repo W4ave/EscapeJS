@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
-const RUN_SPEED = 150.0
+const SPEED = 50.0
+const RUN_SPEED = 75.0
 
 var light_level = 1  #flashligth bright level ( state )
 var light_loss = 5    #flash light battery loss 
@@ -15,9 +15,9 @@ func _physics_process(delta: float) -> void:
 
 #----------- [ stamina ] -------------#
 	if Input.is_action_pressed("sprint") and direction.length() > 0:
-		global.stamina -= 50 * delta
+		global.stamina -= 20 * delta
 	else:
-		global.stamina += 20 * delta
+		global.stamina += 10 * delta
 
 	#global.stamina = clamp(global.stamina, 0.0, 100.0)
 #----------------------- -------------#
