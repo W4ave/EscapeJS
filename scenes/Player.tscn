@@ -160,13 +160,9 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_v6fml"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3li8b"]
 gradient = SubResource("Gradient_v6fml")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.1267361, 0.14756945)
 
 [node name="Player" type="CharacterBody2D" unique_id=320546620 groups=["player"]]
 script = ExtResource("1_ig48j")
@@ -183,4 +179,5 @@ animation = &"walk"
 [node name="Flashlight" type="PointLight2D" parent="." unique_id=607959920]
 color = Color(0.9372549, 1, 0.98039216, 1)
 texture = SubResource("GradientTexture2D_3li8b")
+offset = Vector2(30, 0)
 texture_scale = 3.0

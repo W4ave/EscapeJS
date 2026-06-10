@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const RUN_SPEED = 150.0
+var direction := Vector2.ZERO
 
 var light_level = 1  #flashligth bright level ( state )
 var light_loss = 5    #flash light battery loss 
@@ -9,8 +10,9 @@ var light_loss = 5    #flash light battery loss
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
 
+
 func _physics_process(delta: float) -> void:
-	var direction := Input.get_vector("move_a", "move_d", "move_w", "move_s")
+	direction = Input.get_vector("move_a", "move_d", "move_w", "move_s")
 	var is_sprinting = Input.is_action_pressed("sprint") and global.stamina > 0
 
 #----------- [ stamina ] -------------#
@@ -69,7 +71,11 @@ func _process(delta: float) -> void:
 		2:
 			$Flashlight.texture_scale = 4.5
 			light_loss = 15
-	#--------------------------------------------------#
+			
+
+	# direction 이 zero 일 때 (정지 중) 회전이 0으로 튀는 걸 방지
+	if direction != Vector2.ZERO:
+		$Flashlight.rotation = atan2(direction.y, direction.x)
 
 func _input(event):   #work only when called
 	if event.is_action_pressed("turn_flashlight"):
