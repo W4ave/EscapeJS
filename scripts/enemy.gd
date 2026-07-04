@@ -1,14 +1,24 @@
 extends CharacterBody2D
 
-@export var speed: float = 110.0
+@export var speed: float = 50.0
 
 var target: Node2D = null
+var state : String = "patrol"           # "chase" , "patrol" 두 상태로 나뉨
 
 @onready var collision : CollisionShape2D = $CollisionShape2D
 @onready var detection_area: Area2D = $DetectionArea
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var ray: RayCast2D = $RayCast2D
 @onready var hit_area: Area2D = $HitArea
+@onready var navagent : NavigationAgent2D = $NavigationAgent2D
+
+var patrol_dir: Vector2 = Vector2.RIGHT
+var patrol_timer: float = 0.0
+var chase_timer : float = 0.0
+
+#변수 확인용
+@onready var debug_label: Label = $Label
+
 
 func _ready() -> void:
 	detection_area.body_entered.connect(_on_body_entered)
@@ -16,15 +26,33 @@ func _ready() -> void:
 	hit_area.body_entered.connect(_on_hit)
 	
 
-
 func _physics_process(_delta: float) -> void:
+	
 	if target and _can_see_target():
-		_chase()
+		state = "chase"
+		chase_timer = 10.0
 	else:
-		velocity = Vector2.ZERO
-		anim.play("idle")
+		chase_timer -= _delta
+		if chase_timer <= 0.0:
+			state = "patrol"
 
+	if state == "chase":
+		navagent.target_position = $"../Player".global_position
+		_chase()
+		
+	elif state == "patrol":
+		patrol_timer -= _delta
+		if patrol_timer <= 0.0:
+			patrol_dir = Vector2.from_angle(randf_range(0, TAU))
+			patrol_timer = randf_range(1.0, 2.5)   # 1~2.5초마다 방향 갱신
+		velocity = patrol_dir * 25
+		
+		
 	move_and_slide()
+	_update_debug_label()
+	
+func _update_debug_label() -> void:
+	debug_label.text = state
 
 
 func _can_see_target() -> bool:
@@ -32,12 +60,13 @@ func _can_see_target() -> bool:
 	ray.force_raycast_update()
 
 	if not ray.is_colliding():
+		state = "chase"
 		return true
 	return ray.get_collider() == target
 
 
 func _chase() -> void:
-	var direction = (target.global_position - global_position).normalized()
+	var direction = (navagent.get_next_path_position() - global_position).normalized()
 	velocity = direction * speed
 	_update_animation(direction)
 
