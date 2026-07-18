@@ -15,6 +15,7 @@ var state : String = "patrol"           # "chase" , "patrol" 두 상태로 나�
 var patrol_dir: Vector2 = Vector2.RIGHT
 var patrol_timer: float = 0.0
 var chase_timer : float = 0.0
+@export var attack_range: float = 20.0
 
 #변수 확인용
 @onready var debug_label: Label = $Label
@@ -30,7 +31,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if target and _can_see_target():
 		state = "chase"
-		chase_timer = 10.0
+		chase_timer = 5.0
 	else:
 		chase_timer -= _delta
 		if chase_timer <= 0.0:
@@ -66,7 +67,16 @@ func _can_see_target() -> bool:
 
 
 func _chase() -> void:
-	var direction = (navagent.get_next_path_position() - global_position).normalized()
+	
+	var direction: Vector2
+	var distance_to_target = global_position.distance_to($"../Player".global_position)
+	
+	if distance_to_target <= attack_range:
+		# navmesh 무시하고 플레이어 쪽으로 직접 이동 (충돌은 collider가 처리)
+		direction = (target.global_position - global_position).normalized()
+	else:
+		direction = (navagent.get_next_path_position() - global_position).normalized()
+	
 	velocity = direction * speed
 	_update_animation(direction)
 
@@ -89,12 +99,18 @@ func _on_hit(body: Node2D) -> void:
 		
 		visible = false
 		collision.set_deferred("disable", true)
+		hit_area.set_deferred("monitoring", false)
+		
+		target = null
+		chase_timer = 0.0
+		state = "patrol"
 		
 		await get_tree().create_timer(1.5).timeout
 		global_position = Spawnpoint.global_position
 		
 		visible = true
 		collision.set_deferred("disable", false)
+		hit_area.set_deferred("monitoring", true)
 
 
 func _on_body_entered(body: Node2D) -> void:

@@ -79,17 +79,19 @@ size = Vector2(14, 3)
 radius = 90.0
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1352307495]
-collision_layer = 3
-collision_mask = 3
+position = Vector2(0, -1)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_md0e3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1821116345]
+position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_xwavj")
 animation = &"walk_side"
 frame_progress = 0.81304866
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1422464601]
-position = Vector2(0, 10.5)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_nenq2")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1710722528]
@@ -99,8 +101,10 @@ shape = SubResource("CircleShape2D_md484")
 debug_color = Color(0.99607843, 0, 0.21568628, 0.050980393)
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1148952785]
+position = Vector2(0, -5)
 
 [node name="HitArea" type="Area2D" parent="." unique_id=2126479841]
+position = Vector2(0, -10)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=889297214]
@@ -108,4 +112,7 @@ position = Vector2(0, 10.5)
 shape = SubResource("RectangleShape2D_nenq2")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1793300327]
-radius = 7.0
+navigation_layers = 3
+radius = 178.53
+debug_enabled = true
+debug_path_custom_line_width = 1.0
