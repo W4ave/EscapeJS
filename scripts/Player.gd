@@ -9,9 +9,9 @@ var light_loss = 5
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flashlight: PointLight2D = $Flashlight
 
-const CONE_ANGLE_DEG = 45.0
-const CONE_RADIUS = 200
-const CONE_SOFTNESS = 0.15
+const CONE_ANGLE_DEG = 30.0
+const CONE_RADIUS = 120
+const CONE_SOFTNESS = 0.2
 
 func _ready() -> void:
 	flashlight.texture = _create_cone_texture(CONE_RADIUS, CONE_ANGLE_DEG, CONE_SOFTNESS)
