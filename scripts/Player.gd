@@ -115,8 +115,7 @@ func _process(delta: float) -> void:
 			flashlight.energy = 1.5
 			light_loss = 15
 
-	if direction != Vector2.ZERO:
-		flashlight.rotation = direction.angle()
+	flashlight.rotation = get_global_mouse_position().angle()
 
 func _input(event):
 	if event.is_action_pressed("turn_flashlight"):
