@@ -3,8 +3,9 @@ extends CharacterBody2D
 const SPEED = 100.0
 const RUN_SPEED = 150.0
 var direction := Vector2.ZERO
-var light_level = 1
+var light_level = 0
 var light_loss = 5
+
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flashlight: PointLight2D = $Flashlight
@@ -90,33 +91,34 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	if global.light_charge <= 0:
-		light_level = 0
+	if global.get_flashlight:
+		if global.light_charge <= 0:
+			light_level = 0
 
-	if light_level > 2:
-		light_level = 0
+		if light_level > 2:
+			light_level = 0
 
-	if light_level != 0:
-		global.light_charge -= light_loss * delta
-	else:
-		global.light_charge += 5 * delta
+		if light_level != 0:
+			global.light_charge -= light_loss * delta
+		else:
+			global.light_charge += 5 * delta
 
-	# ----------- [ flashlight state ] -------------
-	match light_level:
-		0:
-			flashlight.visible = false
-		1:
-			flashlight.visible = true
-			flashlight.texture_scale = 1.0
-			flashlight.energy = 1.0
-			light_loss = 5
-		2:
-			flashlight.texture_scale = 1.4
-			flashlight.energy = 1.5
-			light_loss = 15
+		# ----------- [ flashlight state ] -------------
+		match light_level:
+			0:
+				flashlight.visible = false
+			1:
+				flashlight.visible = true
+				flashlight.texture_scale = 1.0
+				flashlight.energy = 1.0
+				light_loss = 5
+			2:
+				flashlight.texture_scale = 1.4
+				flashlight.energy = 1.5
+				light_loss = 15
 
-	flashlight.rotation = (get_global_mouse_position() - global_position).angle()
+		flashlight.rotation = (get_global_mouse_position() - global_position).angle()
 
 func _input(event):
-	if event.is_action_pressed("turn_flashlight"):
+	if global.get_flashlight and event.is_action_pressed("turn_flashlight"):
 		light_level += 1

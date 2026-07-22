@@ -188,8 +188,10 @@ sprite_frames = SubResource("SpriteFrames_0d0nc")
 animation = &"walk"
 
 [node name="Flashlight" type="PointLight2D" parent="." unique_id=607959920]
-color = Color(0.9372549, 1, 0.98039216, 1)
+visible = false
+color = Color(0.81960785, 1, 0.91764706, 1)
 texture = SubResource("GradientTexture2D_3li8b")
 
 [node name="CircleFlashlight" type="PointLight2D" parent="." unique_id=2073868107]
+color = Color(0.82078886, 0.9999998, 0.91787386, 1)
 texture = SubResource("GradientTexture2D_mdl7e")

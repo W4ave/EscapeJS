@@ -200,7 +200,6 @@ layer_0/tile_data = PackedInt32Array(-65540, 0, 1, -4, 0, 1, 65532, 0, 1, 131068
 [node name="StaminaBar" parent="." unique_id=1370015477 instance=ExtResource("4_iywne")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1818554032]
-visible = false
 color = Color(0.0032739982, 0, 0.15667373, 1)
 
 [node name="Player" parent="." unique_id=320546620 instance=ExtResource("1_uwrxv")]
