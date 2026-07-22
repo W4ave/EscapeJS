@@ -104,9 +104,9 @@ func _process(delta: float) -> void:
 	# ----------- [ flashlight state ] -------------
 	match light_level:
 		0:
-			flashlight.enabled = false
+			flashlight.visible = false
 		1:
-			flashlight.enabled = true
+			flashlight.visible = true
 			flashlight.texture_scale = 1.0
 			flashlight.energy = 1.0
 			light_loss = 5
