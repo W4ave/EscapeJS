@@ -179,20 +179,22 @@ metadata/_snap_enabled = true
 script = ExtResource("1_ig48j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1257278321]
-position = Vector2(0, 9.5)
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_ig48j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1884390793]
-position = Vector2(0, -1)
+position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_0d0nc")
 animation = &"walk"
 
 [node name="Flashlight" type="PointLight2D" parent="." unique_id=607959920]
 visible = false
+position = Vector2(0, -6)
 color = Color(0.81960785, 1, 0.91764706, 1)
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_3li8b")
 
 [node name="CircleFlashlight" type="PointLight2D" parent="." unique_id=2073868107]
+position = Vector2(0, -9)
 color = Color(0.82078886, 0.9999998, 0.91787386, 1)
 texture = SubResource("GradientTexture2D_mdl7e")
