@@ -10,6 +10,7 @@ var light_loss = 5
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flashlight: PointLight2D = $Flashlight
 
+
 const CONE_ANGLE_DEG = 30.0
 const CONE_RADIUS = 120
 const CONE_SOFTNESS = 0.2
@@ -122,3 +123,7 @@ func _process(delta: float) -> void:
 func _input(event):
 	if global.get_flashlight and event.is_action_pressed("turn_flashlight"):
 		light_level += 1
+		
+		
+	if event.is_action_pressed("ui_up"):       #적 활성화 기능 테스트
+		global.enemy_enable = true

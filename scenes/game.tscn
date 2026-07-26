@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bfnlvhfnfyqou" path="res://scenes/StaminaBar.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://bnqfgmfi6hv47" path="res://scenes/Enemy.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://dycfbl3p07i3g" path="res://scenes/FlashBar.tscn" id="5_iywne"]
+[ext_resource type="Script" uid="uid://b5bofmu16caad" path="res://scenes/camera.gd" id="9_vtaks"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vtaks"]
 vertices = PackedVector2Array(401, 95, 401, 177, 369, 177, 223, 95, 223, 193, 369, 193, 527, -1, 561, -1, 561, 33, 545, 33, 527, 31, 545, 49, 513, 49, 511, 31, 511, 65, 513, 65, -113, 95, -113, -47, -95, 81, -95, 113, -273, 113, -175, 95, -273, 81, -175, -47, -63, -97, -63, -47, -79, -47, -321, -97, -79, 33, -95, 33, -95, 79, -63, 79, -63, 81, -321, -33, -353, 81, -353, 65, -369, 65, -369, 63, -353, 63, -353, 17, -369, 17, -369, 15, -353, 15, -337, -17, -353, -17, -337, -33)
@@ -205,6 +206,7 @@ layer_0/tile_data = PackedInt32Array(-65540, 0, 1, -4, 0, 1, 65532, 0, 1, 131068
 [node name="StaminaBar" parent="." unique_id=1370015477 instance=ExtResource("4_iywne")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1818554032]
+visible = false
 color = Color(0.0032739982, 0, 0.15667373, 1)
 
 [node name="Player" parent="." unique_id=320546620 instance=ExtResource("1_uwrxv")]
@@ -214,8 +216,10 @@ position = Vector2(0, -1)
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1458416397]
 position = Vector2(0, 1)
 offset = Vector2(0, -11)
+ignore_rotation = false
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
+script = ExtResource("9_vtaks")
 
 [node name="Enemy" parent="." unique_id=1001022762 instance=ExtResource("4_lbhrr")]
 position = Vector2(-264, 33)
