@@ -16,6 +16,7 @@ const CONE_RADIUS = 120
 const CONE_SOFTNESS = 0.2
 
 func _ready() -> void:
+	position = global.checkpoint
 	flashlight.texture = _create_cone_texture(CONE_RADIUS, CONE_ANGLE_DEG, CONE_SOFTNESS)
 	flashlight.offset = Vector2.ZERO
 

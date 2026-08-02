@@ -14,3 +14,4 @@ func _on_retry() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")  # 메인 씬 경로로 변경
 	
 	global.life = 3
+	global.checkpoint = Vector2(0, -1)

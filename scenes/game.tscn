@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d4myj1r7fu0dp" path="res://scenes/life.tscn" id="4_gee14"]
 [ext_resource type="PackedScene" uid="uid://bfnlvhfnfyqou" path="res://scenes/StaminaBar.tscn" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://bnqfgmfi6hv47" path="res://scenes/Enemy.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://yr13aumiwj4n" path="res://scenes/check_point.tscn" id="4_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dycfbl3p07i3g" path="res://scenes/FlashBar.tscn" id="5_iywne"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vtaks"]
@@ -187,6 +188,12 @@ autowrap_trim_flags = 64
 
 [node name="ClearPoint" parent="." unique_id=1226530692 instance=ExtResource("3_vtaks")]
 position = Vector2(0, 91)
+
+[node name="CheckPoint" parent="." unique_id=1630202176 instance=ExtResource("4_vtaks")]
+position = Vector2(0, 150)
+
+[node name="CheckPoint2" parent="." unique_id=1391530579 instance=ExtResource("4_vtaks")]
+position = Vector2(47, -55)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1910288642]
 navigation_polygon = SubResource("NavigationPolygon_vtaks")
