@@ -8,6 +8,7 @@ var current_stage = 0
 var get_flashlight = true
 var enemy_enable = false
 
+
 func _process(_delta: float) -> void:
 	stamina = clamp(stamina, 0.0, 100.0)
 	

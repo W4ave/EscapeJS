@@ -4,13 +4,14 @@ signal player_died
 signal player_damaged
 
 func damage_player():
-	global.life -= 1
+	
 	player_damaged.emit()
+	var life_out = load("res://scenes/life_out.tscn").instantiate()
+	get_tree().root.add_child(life_out)
+	get_tree().current_scene.queue_free()
 
 	if global.life <= 0:
 		player_died.emit()
 		
-		var game_over = load("res://scenes/game_over.tscn").instantiate()
-		get_tree().root.add_child(game_over)
-		get_tree().current_scene.queue_free()
+		
 		

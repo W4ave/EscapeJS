@@ -220,11 +220,11 @@ zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="Enemy" parent="." unique_id=1001022762 instance=ExtResource("4_lbhrr")]
-position = Vector2(-264, 33)
+position = Vector2(-165, -51)
 
 [node name="Label" type="Label" parent="Enemy" unique_id=890077800]
 offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Spawnpoint" type="Marker2D" parent="." unique_id=1987170916]
-position = Vector2(-290, 33)
+position = Vector2(-229, -18)
