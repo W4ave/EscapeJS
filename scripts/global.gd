@@ -9,6 +9,9 @@ var get_flashlight = true
 var enemy_enable = false
 
 var checkpoint : Vector2 = Vector2(0,-1)
+var elapsed_time: float = 0.0
+
+var slowdown = 1
 
 func _process(_delta: float) -> void:
 	stamina = clamp(stamina, 0.0, 100.0)

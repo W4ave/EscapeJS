@@ -2,6 +2,8 @@ extends Node2D
 
 signal player_died
 signal player_damaged
+signal focus_attacked
+signal make_unfocus
 
 func damage_player():
 	
@@ -13,5 +15,13 @@ func damage_player():
 	if global.life <= 0:
 		player_died.emit()
 		
+		
+func focus_attack_player():
+	global.slowdown = 10
+	emit_signal("focus_attacked")
+	
+func unfocusing():
+	global.slowdown = 1
+	emit_signal("make_unfocus")
 		
 		

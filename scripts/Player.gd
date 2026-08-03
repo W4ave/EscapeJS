@@ -2,13 +2,19 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const RUN_SPEED = 150.0
+
+var speed = 100.0
+var run_speed = 150.0
 var direction := Vector2.ZERO
 var light_level = 0
 var light_loss = 5
 
+var temp_slowdown : int
+
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flashlight: PointLight2D = $Flashlight
+@onready var game = get_tree().current_scene
 
 
 const CONE_ANGLE_DEG = 30.0
@@ -19,6 +25,20 @@ func _ready() -> void:
 	position = global.checkpoint
 	flashlight.texture = _create_cone_texture(CONE_RADIUS, CONE_ANGLE_DEG, CONE_SOFTNESS)
 	flashlight.offset = Vector2.ZERO
+	game.connect("focus_attacked", Callable(self, "focus_avoid"))
+	game.connect("make_unfocus", Callable(self, "unfocus_avoid"))
+	
+
+func focus_avoid():
+	temp_slowdown = global.slowdown
+	if speed == SPEED and run_speed == RUN_SPEED:
+		speed /= global.slowdown
+		run_speed /= global.slowdown
+
+func unfocus_avoid():
+	if speed != SPEED and run_speed != RUN_SPEED:
+		speed *= temp_slowdown
+		run_speed *= temp_slowdown
 
 func _create_cone_texture(radius: int, half_angle_deg: float, softness: float) -> ImageTexture:
 	var size = radius * 2
@@ -66,18 +86,18 @@ func _physics_process(delta: float) -> void:
 
 	# ----------- [ stamina ] -------------
 	if Input.is_action_pressed("sprint") and direction.length() > 0:
-		global.stamina -= 50 * delta
+		global.stamina -= 50 * (delta / global.slowdown)
 	else:
-		global.stamina += 20 * delta
+		global.stamina += 20 * (delta / global.slowdown)
 
 	# ----------- [ anime ] -------------
 	if direction != Vector2.ZERO:
 		if is_sprinting:
-			velocity = direction * RUN_SPEED
-			anim.speed_scale = 2.0
+			velocity = direction * run_speed
+			anim.speed_scale = 2.0 / global.slowdown
 		else:
-			velocity = direction * SPEED
-			anim.speed_scale = 1.0
+			velocity = direction * speed
+			anim.speed_scale = 1.0 / global.slowdown
 
 		if direction.x > 0:
 			anim.flip_h = false
@@ -86,8 +106,8 @@ func _physics_process(delta: float) -> void:
 
 		anim.play("walk")
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
-		anim.speed_scale = 1.0
+		velocity = velocity.move_toward(Vector2.ZERO, speed)
+		anim.speed_scale = 1.0 / global.slowdown
 		anim.play("idle")
 
 	move_and_slide()
@@ -101,9 +121,9 @@ func _process(delta: float) -> void:
 			light_level = 0
 
 		if light_level != 0:
-			global.light_charge -= light_loss * delta
+			global.light_charge -= light_loss * (delta/ global.slowdown)
 		else:
-			global.light_charge += 5 * delta
+			global.light_charge += 5 * (delta/ global.slowdown)
 
 		# ----------- [ flashlight state ] -------------
 		match light_level:
@@ -128,3 +148,9 @@ func _input(event):
 		
 	if event.is_action_pressed("ui_up"):       #적 활성화 기능 테스트
 		global.enemy_enable = true
+		
+	if event.is_action_pressed("ui_right"):       #적 활성화 기능 테스트
+		game.focus_attack_player()
+		
+	if event.is_action_pressed("ui_left"):
+		game.unfocusing()
