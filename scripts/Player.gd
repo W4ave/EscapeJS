@@ -10,18 +10,30 @@ var light_level = 0
 var light_loss = 5
 
 var temp_slowdown : int
+var focused_zoom = Vector2(5.5,5.5)
+var unfocused_zoom = Vector2(4,4)
 
+var is_dashing : bool
+var dash_direction = Vector2.ZERO
+const DASH_TIME = 0.05
+var dash_timer = 0.0
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flashlight: PointLight2D = $Flashlight
 @onready var game = get_tree().current_scene
-
+@onready var camera : Camera2D = $Camera2D
+@onready var anim_player = $"../AnimationPlayer"
+@onready var Enemy = $"../Enemy"
 
 const CONE_ANGLE_DEG = 30.0
 const CONE_RADIUS = 120
 const CONE_SOFTNESS = 0.2
 
+
+
 func _ready() -> void:
+	is_dashing = false
+	global.focus_state = false
 	position = global.checkpoint
 	flashlight.texture = _create_cone_texture(CONE_RADIUS, CONE_ANGLE_DEG, CONE_SOFTNESS)
 	flashlight.offset = Vector2.ZERO
@@ -34,11 +46,18 @@ func focus_avoid():
 	if speed == SPEED and run_speed == RUN_SPEED:
 		speed /= global.slowdown
 		run_speed /= global.slowdown
+		
+	#camera.zoom = focused_zoom
+	anim_player.play("focused_camera")
 
 func unfocus_avoid():
 	if speed != SPEED and run_speed != RUN_SPEED:
+		await get_tree().create_timer(0.1).timeout
 		speed *= temp_slowdown
 		run_speed *= temp_slowdown
+	
+	#camera.zoom = unfocused_zoom
+	anim_player.play("RESET")
 
 func _create_cone_texture(radius: int, half_angle_deg: float, softness: float) -> ImageTexture:
 	var size = radius * 2
@@ -81,7 +100,17 @@ func _create_cone_texture(radius: int, half_angle_deg: float, softness: float) -
 	return ImageTexture.create_from_image(img)
 
 func _physics_process(delta: float) -> void:
-	direction = Input.get_vector("move_a", "move_d", "move_w", "move_s")
+	if is_dashing:
+		velocity = dash_direction * 150
+		move_and_slide()
+		
+		dash_timer -= delta
+		if dash_timer <= 0:
+			is_dashing = false
+			velocity = Vector2.ZERO
+	
+	elif !global.focus_state:
+		direction = Input.get_vector("move_a", "move_d", "move_w", "move_s")
 	var is_sprinting = Input.is_action_pressed("sprint") and global.stamina > 0
 
 	# ----------- [ stamina ] -------------
@@ -149,8 +178,12 @@ func _input(event):
 	if event.is_action_pressed("ui_up"):       #적 활성화 기능 테스트
 		global.enemy_enable = true
 		
-	if event.is_action_pressed("ui_right"):       #적 활성화 기능 테스트
+	if event.is_action_pressed("ui_right"):     
 		game.focus_attack_player()
 		
-	if event.is_action_pressed("ui_left"):
-		game.unfocusing()
+	if event.is_action_pressed("ui_select"):
+		if global.focus_state:
+			dash_direction = (global_position - Enemy.global_position).normalized()
+			is_dashing = true
+			dash_timer = DASH_TIME
+			game.unfocusing()

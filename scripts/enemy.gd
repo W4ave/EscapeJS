@@ -69,5 +69,4 @@ func _update_animation(dir: Vector2) -> void:
 
 func _on_hit(body: Node2D) -> void:	
 	if body.is_in_group("player") and global.enemy_enable:
-		var game = get_tree().current_scene
 		game.damage_player()

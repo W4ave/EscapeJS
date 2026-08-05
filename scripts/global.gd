@@ -10,6 +10,7 @@ var enemy_enable = false
 
 var checkpoint : Vector2 = Vector2(0,-1)
 var elapsed_time: float = 0.0
+var focus_state = false
 
 var slowdown = 1
 

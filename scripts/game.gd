@@ -19,9 +19,11 @@ func damage_player():
 func focus_attack_player():
 	global.slowdown = 10
 	emit_signal("focus_attacked")
+	global.focus_state = true
 	
 func unfocusing():
 	global.slowdown = 1
 	emit_signal("make_unfocus")
+	global.focus_state = false
 		
 		
