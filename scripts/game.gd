@@ -2,6 +2,7 @@ extends Node2D
 
 signal player_died
 signal player_damaged
+signal player_attack
 signal focus_attacked
 signal make_unfocus
 
@@ -26,4 +27,7 @@ func unfocusing():
 	emit_signal("make_unfocus")
 	global.focus_state = false
 		
+func attack():
+	emit_signal("player_attack")
+	print(0)
 		

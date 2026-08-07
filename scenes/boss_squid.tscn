@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://5us8l5u6qe0"]
+
+[ext_resource type="Texture2D" uid="uid://cjjuaj3d3c7js" path="res://assets/sprites/slime_purple.png" id="1_ngkcq"]
+[ext_resource type="Script" uid="uid://b224605y3co3x" path="res://scripts/boss_squid.gd" id="1_toscy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_toscy"]
+atlas = ExtResource("1_ngkcq")
+region = Rect2(0, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q30k2"]
+atlas = ExtResource("1_ngkcq")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f14jg"]
+atlas = ExtResource("1_ngkcq")
+region = Rect2(48, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yodr"]
+atlas = ExtResource("1_ngkcq")
+region = Rect2(72, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kbtp"]
+atlas = ExtResource("1_ngkcq")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7o0rm"]
+atlas = ExtResource("1_ngkcq")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdo51"]
+atlas = ExtResource("1_ngkcq")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijren"]
+atlas = ExtResource("1_ngkcq")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_seprr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_toscy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q30k2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f14jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yodr")
+}],
+"loop": true,
+"name": &"damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kbtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o0rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdo51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijren")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_van8d"]
+size = Vector2(384, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngkcq"]
+size = Vector2(88, 20)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_q30k2"]
+points = PackedVector2Array(0, 0, 280, 32, 280, -32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f14jg"]
+size = Vector2(1101.5027, 35.973648)
+
+[node name="BossSquid" type="CharacterBody2D" unique_id=1728815162]
+script = ExtResource("1_toscy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1599408345]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_seprr")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.3082384
+
+[node name="UntouchableWall" type="CollisionShape2D" parent="." unique_id=1745826133]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_van8d")
+
+[node name="DamagedArea" type="Area2D" parent="." unique_id=100274521]
+
+[node name="damagedcollision" type="CollisionShape2D" parent="DamagedArea" unique_id=1903077316]
+position = Vector2(0, 56)
+shape = SubResource("RectangleShape2D_ngkcq")
+debug_color = Color(0.9999978, 0.5594638, 0.49453515, 0.41960785)
+
+[node name="Attack_1_Area" type="Area2D" parent="." unique_id=821005731]
+
+[node name="Spread" type="CollisionShape2D" parent="Attack_1_Area" unique_id=1274494419]
+position = Vector2(0, 40)
+shape = SubResource("ConvexPolygonShape2D_q30k2")
+debug_color = Color(0.39620134, 0, 0.15432504, 0.41960785)
+
+[node name="Attack_2_Area" type="Area2D" parent="." unique_id=1536692803]
+
+[node name="Leg1" type="CollisionShape2D" parent="Attack_2_Area" unique_id=136734886]
+position = Vector2(-192, 56)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_f14jg")
+debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)
+
+[node name="Leg2" type="CollisionShape2D" parent="Attack_2_Area" unique_id=12213008]
+position = Vector2(192, 56)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_f14jg")
+debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)

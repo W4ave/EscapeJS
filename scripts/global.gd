@@ -7,8 +7,9 @@ var current_stage = 0
 
 var get_flashlight = true
 var enemy_enable = false
+var boss_enable = false
 
-var checkpoint : Vector2 = Vector2(0,-1)
+var checkpoint : Vector2 =Vector2(-250, 400)    #= Vector2(0,-1)
 var elapsed_time: float = 0.0
 var focus_state = false
 

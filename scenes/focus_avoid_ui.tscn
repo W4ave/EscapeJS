@@ -314,7 +314,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_7xn1u")
 show_percentage = false
 
 [node name="Spacebar" type="AnimatedSprite2D" parent="." unique_id=904652925]
-position = Vector2(572, 136)
+position = Vector2(572, 128)
 scale = Vector2(7.625001, 7.625001)
 sprite_frames = SubResource("SpriteFrames_2moo4")
 frame_progress = 0.5654441

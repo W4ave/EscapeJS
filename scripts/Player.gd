@@ -10,8 +10,6 @@ var light_level = 0
 var light_loss = 5
 
 var temp_slowdown : int
-var focused_zoom = Vector2(5.5,5.5)
-var unfocused_zoom = Vector2(4,4)
 
 var is_dashing : bool
 var dash_direction = Vector2.ZERO
@@ -175,8 +173,14 @@ func _input(event):
 		light_level += 1
 		
 		
+	if event.is_action_pressed("mouse_left"):
+		game.attack()
+		
 	if event.is_action_pressed("ui_up"):       #적 활성화 기능 테스트
 		global.enemy_enable = true
+		
+	if event.is_action_pressed("ui_down"):
+		global.boss_enable = true
 		
 	if event.is_action_pressed("ui_right"):     
 		game.focus_attack_player()
@@ -187,3 +191,4 @@ func _input(event):
 			is_dashing = true
 			dash_timer = DASH_TIME
 			game.unfocusing()
+			
