@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cjjuaj3d3c7js" path="res://assets/sprites/slime_purple.png" id="1_ngkcq"]
 [ext_resource type="Script" uid="uid://b224605y3co3x" path="res://scripts/boss_squid.gd" id="1_toscy"]
+[ext_resource type="Texture2D" uid="uid://wus4aglnlek6" path="res://assets/sprites/platforms.png" id="3_q30k2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_toscy"]
 atlas = ExtResource("1_ngkcq")
@@ -84,6 +85,35 @@ points = PackedVector2Array(0, 0, 280, 32, 280, -32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f14jg"]
 size = Vector2(1101.5027, 35.973648)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_seprr"]
+atlas = ExtResource("3_q30k2")
+region = Rect2(0, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_van8d"]
+atlas = ExtResource("3_q30k2")
+region = Rect2(16, 0, 16, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiywm"]
+atlas = ExtResource("3_q30k2")
+region = Rect2(32, 0, 16, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wkmpr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seprr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_van8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiywm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="BossSquid" type="CharacterBody2D" unique_id=1728815162]
 script = ExtResource("1_toscy")
 
@@ -112,6 +142,16 @@ position = Vector2(0, 40)
 shape = SubResource("ConvexPolygonShape2D_q30k2")
 debug_color = Color(0.39620134, 0, 0.15432504, 0.41960785)
 
+[node name="box" type="Polygon2D" parent="Attack_1_Area/Spread" unique_id=1147052920]
+visible = false
+color = Color(1, 0, 0.08627451, 0.3019608)
+polygon = PackedVector2Array(0, 0, 280, 32, 280, -32)
+
+[node name="texture" type="Polygon2D" parent="Attack_1_Area/Spread" unique_id=414512648]
+visible = false
+color = Color(0, 0, 0, 0.476)
+polygon = PackedVector2Array(0, 0, 280, 32, 280, -32)
+
 [node name="Attack_2_Area" type="Area2D" parent="." unique_id=1536692803]
 
 [node name="Leg1" type="CollisionShape2D" parent="Attack_2_Area" unique_id=136734886]
@@ -120,8 +160,34 @@ scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_f14jg")
 debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)
 
+[node name="box" type="ColorRect" parent="Attack_2_Area/Leg1" unique_id=1922761149]
+visible = false
+offset_left = -551.0001
+offset_top = -18.000008
+offset_right = 550.9999
+offset_bottom = 17.999992
+color = Color(1, 0, 0.086104214, 0.3)
+
+[node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg1" unique_id=1632042231]
+visible = false
+scale = Vector2(69.000015, 4.000001)
+sprite_frames = SubResource("SpriteFrames_wkmpr")
+
 [node name="Leg2" type="CollisionShape2D" parent="Attack_2_Area" unique_id=12213008]
 position = Vector2(192, 56)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_f14jg")
 debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)
+
+[node name="box" type="ColorRect" parent="Attack_2_Area/Leg2" unique_id=1738948527]
+visible = false
+offset_left = -551.0001
+offset_top = -18.000004
+offset_right = 550.9999
+offset_bottom = 17.999996
+color = Color(1, 0, 0.086104214, 0.3)
+
+[node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg2" unique_id=1683520111]
+visible = false
+scale = Vector2(69.000015, 4.000001)
+sprite_frames = SubResource("SpriteFrames_wkmpr")

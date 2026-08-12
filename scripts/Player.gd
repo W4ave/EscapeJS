@@ -16,6 +16,11 @@ var dash_direction = Vector2.ZERO
 const DASH_TIME = 0.05
 var dash_timer = 0.0
 
+var is_attacking : bool
+var attack_timer = 0.0
+const ATTACK_TIME = 0.7            #쿨타임
+const ATTACK_DAMAGE : int = 10
+
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flashlight: PointLight2D = $Flashlight
 @onready var game = get_tree().current_scene
@@ -109,6 +114,14 @@ func _physics_process(delta: float) -> void:
 	
 	elif !global.focus_state:
 		direction = Input.get_vector("move_a", "move_d", "move_w", "move_s")
+
+	if is_attacking:
+		attack_timer -= delta
+		
+		if attack_timer <= 0:
+			is_attacking = false
+		
+
 	var is_sprinting = Input.is_action_pressed("sprint") and global.stamina > 0
 
 	# ----------- [ stamina ] -------------
@@ -173,8 +186,11 @@ func _input(event):
 		light_level += 1
 		
 		
-	if event.is_action_pressed("mouse_left"):
-		game.attack()
+	if event.is_action_pressed("mouse_left"):        #_physics_process에서 쿨타임 처리
+		if !is_attacking:
+			game.attack(ATTACK_DAMAGE)
+			attack_timer = ATTACK_TIME
+			is_attacking = true
 		
 	if event.is_action_pressed("ui_up"):       #적 활성화 기능 테스트
 		global.enemy_enable = true

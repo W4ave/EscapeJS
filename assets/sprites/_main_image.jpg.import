@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pvrcbmdudyuc"
-path="res://.godot/imported/JSHighSchool.jpg-195097709f05df4ec324fc047b6e64f5.ctex"
+uid="uid://cy7hbtd0cwgor"
+path="res://.godot/imported/_main_image.jpg-fddbb20361458ff55d784be9195515f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/JSHighSchool.jpg"
-dest_files=["res://.godot/imported/JSHighSchool.jpg-195097709f05df4ec324fc047b6e64f5.ctex"]
+source_file="res://assets/sprites/_main_image.jpg"
+dest_files=["res://.godot/imported/_main_image.jpg-fddbb20361458ff55d784be9195515f1.ctex"]
 
 [params]
 

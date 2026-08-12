@@ -2,9 +2,12 @@ extends Node2D
 
 signal player_died
 signal player_damaged
-signal player_attack
+signal player_attack(damage)
 signal focus_attacked
 signal make_unfocus
+signal get_inked
+
+signal boss_dying
 
 func damage_player():
 	
@@ -17,6 +20,9 @@ func damage_player():
 		player_died.emit()
 		
 		
+func ink_screen():
+	emit_signal("get_inked")
+
 func focus_attack_player():
 	global.slowdown = 10
 	emit_signal("focus_attacked")
@@ -27,7 +33,8 @@ func unfocusing():
 	emit_signal("make_unfocus")
 	global.focus_state = false
 		
-func attack():
-	emit_signal("player_attack")
-	print(0)
+func attack(damage):
+	emit_signal("player_attack", damage)
 		
+func boss_dead():
+	emit_signal("boss_dying")

@@ -19,6 +19,8 @@ const ACTIVE_TIME = 0.1      # 실제로 데미지 판정이 켜져있는 시간
 
 
 func _ready() -> void:
+	global.boss_hp = 100.0
+	
 	Col_leg1.global_rotation = 0.0
 	Col_leg2.global_rotation = 0.0
 	Col_spread.global_rotation = 0.0
@@ -30,11 +32,11 @@ func _ready() -> void:
 	
 	# 시그널 연결은 _ready()에서 딱 한 번만! 반복 호출되는 함수 안에서 연결하면
 	# 같은 시그널이 여러 번 연결되어 데미지가 중복으로 들어가는 버그가 생겨요.
-	Atk_spread_area.body_entered.connect(_on_hit)
+	Atk_spread_area.body_entered.connect(_on_inked)
 	Atk_leg_area.body_entered.connect(_on_hit)
 	Damaged_area.body_entered.connect(_on_damaged_area)
 	Damaged_area.body_exited.connect(_off_damaged_area)
-	game.connect("player_attack", Callable(self, "get_damaged"))
+	game.connect("player_attack", Callable(self, "_get_damaged"))
 
 
 func _physics_process(delta: float) -> void:
@@ -47,20 +49,27 @@ func _physics_process(delta: float) -> void:
 		is_waiting = false
 
 
+func _on_inked(body: Node2D) -> void:
+	if body.is_in_group("player") and global.boss_enable:
+		game.ink_screen()
+
 func _on_hit(body: Node2D) -> void:
 	if body.is_in_group("player") and global.boss_enable:
 		game.damage_player()
 		global.boss_enable = false
 
-func _on_damaged_area(body : Node2D) -> void:
+func _on_damaged_area(_body : Node2D) -> void:
 	can_damaged = true
 
-func _off_damaged_area(body : Node2D) -> void:
+func _off_damaged_area(_body : Node2D) -> void:
 	can_damaged = false
 
-func get_damaged():
+func _get_damaged(damage):
 	if can_damaged:
-		print(1)
+		global.boss_hp -= damage
+		print(global.boss_hp)
+		if global.boss_hp <= 0:
+			game.boss_dead()
 
 func choose_pattern() -> void:
 	var patterns = [spread_pattern, leg1_pattern, leg2_pattern]
@@ -75,10 +84,22 @@ func execute_attack(hitbox: Node) -> void:
 	# 1) 플레이어 방향으로 회전
 	hitbox.global_rotation = (player.global_position - hitbox.global_position).angle()
 	
+	var texture = hitbox.get_node_or_null("texture")
+	var box = hitbox.get_node_or_null("box")
+	
 	# 2) 예고 시간만큼 대기 (여기서 스프라이트 반짝임, 색깔 변화 등 연출 넣기 좋음)
+	if box:
+		box.visible = true
+		box.scale = Vector2(0,1)
+		var tween = create_tween()
+		tween.tween_property(box, "scale", Vector2.ONE, TELEGRAPH_TIME)
+		await tween.finished
 	await get_tree().create_timer(TELEGRAPH_TIME).timeout
 	
 	# 3) 실제 데미지 판정 켜기
+	if texture and box:
+		texture.visible = true
+		box.visible = false
 	hitbox.disabled = false
 	
 	# 4) 판정이 켜져있는 시간만큼 대기
@@ -86,6 +107,8 @@ func execute_attack(hitbox: Node) -> void:
 	
 	# 5) 판정 다시 끄기 (계속 켜두면 스치기만 해도 계속 데미지 들어감)
 	hitbox.disabled = true
+	if texture:
+		texture.visible = false
 
 
 func spread_pattern() -> void:
