@@ -11,7 +11,7 @@ var boss_enable = false
 
 var boss_hp : float = 100.0
 
-var checkpoint : Vector2 =Vector2(-250, 400)    #= Vector2(0,-1)
+var checkpoint : Vector2 = Vector2(-250, 400)    #= Vector2(0,-1)
 var elapsed_time: float = 0.0
 var focus_state = false
 

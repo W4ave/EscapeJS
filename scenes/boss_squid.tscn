@@ -51,7 +51,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8yodr")
 }],
-"loop": true,
+"loop": false,
 "name": &"damaged",
 "speed": 5.0
 }, {
@@ -114,15 +114,17 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_q30k2"]
+radius = 35.0
+
 [node name="BossSquid" type="CharacterBody2D" unique_id=1728815162]
 script = ExtResource("1_toscy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1599408345]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_seprr")
-animation = &"idle"
+animation = &"damaged"
 autoplay = "idle"
-frame_progress = 0.3082384
 
 [node name="UntouchableWall" type="CollisionShape2D" parent="." unique_id=1745826133]
 position = Vector2(0, 14)
@@ -190,4 +192,122 @@ color = Color(1, 0, 0.086104214, 0.3)
 [node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg2" unique_id=1683520111]
 visible = false
 scale = Vector2(69.000015, 4.000001)
+sprite_frames = SubResource("SpriteFrames_wkmpr")
+
+[node name="Leg3" type="CollisionShape2D" parent="Attack_2_Area" unique_id=241042437]
+visible = false
+position = Vector2(128, 56)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_f14jg")
+debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)
+
+[node name="box" type="ColorRect" parent="Attack_2_Area/Leg3" unique_id=198830988]
+visible = false
+offset_left = -551.0001
+offset_top = -18.000004
+offset_right = 550.9999
+offset_bottom = 17.999996
+color = Color(1, 0, 0.086104214, 0.3)
+
+[node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg3" unique_id=1657192630]
+visible = false
+scale = Vector2(69.000015, 4.000001)
+sprite_frames = SubResource("SpriteFrames_wkmpr")
+
+[node name="Leg4" type="CollisionShape2D" parent="Attack_2_Area" unique_id=50570944]
+visible = false
+position = Vector2(-128, 56)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_f14jg")
+debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)
+
+[node name="box" type="ColorRect" parent="Attack_2_Area/Leg4" unique_id=1713682970]
+visible = false
+offset_left = -551.0001
+offset_top = -18.000004
+offset_right = 550.9999
+offset_bottom = 17.999996
+color = Color(1, 0, 0.086104214, 0.3)
+
+[node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg4" unique_id=66998939]
+visible = false
+scale = Vector2(69.000015, 4.000001)
+sprite_frames = SubResource("SpriteFrames_wkmpr")
+
+[node name="Leg5" type="CollisionShape2D" parent="Attack_2_Area" unique_id=1771370110]
+position = Vector2(-128, 56)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_f14jg")
+debug_color = Color(0.23529412, 0.50980395, 1, 0.41960785)
+
+[node name="box" type="ColorRect" parent="Attack_2_Area/Leg5" unique_id=650700999]
+visible = false
+offset_left = -551.0001
+offset_top = -18.000004
+offset_right = 550.9999
+offset_bottom = 17.999996
+color = Color(0.5530576, 0.0003280592, 0.583155, 0.3019608)
+
+[node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg5" unique_id=1692852199]
+visible = false
+scale = Vector2(69.000015, 4.000001)
+sprite_frames = SubResource("SpriteFrames_wkmpr")
+
+[node name="Leg6" type="CollisionShape2D" parent="Attack_2_Area" unique_id=483539351]
+position = Vector2(128, 56)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_f14jg")
+debug_color = Color(0.23710671, 0.50867885, 1, 0.41960785)
+
+[node name="box" type="ColorRect" parent="Attack_2_Area/Leg6" unique_id=825572538]
+visible = false
+offset_left = -551.0001
+offset_top = -18.000004
+offset_right = 550.9999
+offset_bottom = 17.999996
+color = Color(0.5529412, 0, 0.58431375, 0.3019608)
+
+[node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg6" unique_id=1861542627]
+visible = false
+scale = Vector2(69.000015, 4.000001)
+sprite_frames = SubResource("SpriteFrames_wkmpr")
+
+[node name="Leg7" type="CollisionShape2D" parent="Attack_2_Area" unique_id=1142532900]
+position = Vector2(104, 24)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("CircleShape2D_q30k2")
+debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)
+
+[node name="box" type="ColorRect" parent="Attack_2_Area/Leg7" unique_id=372828119]
+visible = false
+offset_left = -35.000008
+offset_top = -35.000008
+offset_right = 35.000008
+offset_bottom = 34.000008
+color = Color(1, 0, 0.08627451, 0.3019608)
+
+[node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg7" unique_id=144581667]
+visible = false
+position = Vector2(-1.0728836e-06, -1.1920929e-07)
+scale = Vector2(4.312501, 7.000002)
+sprite_frames = SubResource("SpriteFrames_wkmpr")
+
+[node name="Leg8" type="CollisionShape2D" parent="Attack_2_Area" unique_id=105283287]
+position = Vector2(-104, 24)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("CircleShape2D_q30k2")
+debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)
+
+[node name="box" type="ColorRect" parent="Attack_2_Area/Leg8" unique_id=1364590172]
+visible = false
+offset_left = -35.000008
+offset_top = -35.000008
+offset_right = 35.000008
+offset_bottom = 34.000008
+color = Color(1, 0, 0.086104214, 0.3)
+
+[node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg8" unique_id=257520077]
+visible = false
+position = Vector2(-1.0728836e-06, -1.1920929e-07)
+scale = Vector2(4.312501, 7.000002)
 sprite_frames = SubResource("SpriteFrames_wkmpr")

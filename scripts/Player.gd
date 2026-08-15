@@ -173,7 +173,7 @@ func _process(delta: float) -> void:
 				flashlight.visible = true
 				flashlight.texture_scale = 1.0
 				flashlight.energy = 1.0
-				light_loss = 5
+				light_loss = 0
 			2:
 				flashlight.texture_scale = 1.4
 				flashlight.energy = 1.5
