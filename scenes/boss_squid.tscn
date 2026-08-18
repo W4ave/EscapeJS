@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cjjuaj3d3c7js" path="res://assets/sprites/slime_purple.png" id="1_ngkcq"]
 [ext_resource type="Script" uid="uid://b224605y3co3x" path="res://scripts/boss_squid.gd" id="1_toscy"]
-[ext_resource type="Texture2D" uid="uid://wus4aglnlek6" path="res://assets/sprites/platforms.png" id="3_q30k2"]
+[ext_resource type="Texture2D" uid="uid://boyei8arl2dg1" path="res://assets/sprites/squid_tentacle.png" id="3_f14jg"]
 [ext_resource type="Shader" uid="uid://ck8sxmfdmi1kb" path="res://shader/leg_squeeze_collider.gdshader" id="4_f14jg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_toscy"]
@@ -87,28 +87,14 @@ points = PackedVector2Array(0, 0, 280, 32, 280, -32)
 size = Vector2(1101.5027, 35.973648)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_seprr"]
-atlas = ExtResource("3_q30k2")
-region = Rect2(0, 0, 16, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_van8d"]
-atlas = ExtResource("3_q30k2")
-region = Rect2(16, 0, 16, 9)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oiywm"]
-atlas = ExtResource("3_q30k2")
-region = Rect2(32, 0, 16, 9)
+atlas = ExtResource("3_f14jg")
+region = Rect2(0, 0, 551, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wkmpr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_seprr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_van8d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oiywm")
 }],
 "loop": true,
 "name": &"default",
@@ -180,7 +166,7 @@ color = Color(1, 0, 0.086104214, 0.3)
 
 [node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg1" unique_id=1632042231]
 visible = false
-scale = Vector2(69.000015, 4.000001)
+position = Vector2(280.00006, 0)
 sprite_frames = SubResource("SpriteFrames_wkmpr")
 
 [node name="Leg2" type="CollisionShape2D" parent="Attack_2_Area" unique_id=12213008]
@@ -199,7 +185,7 @@ color = Color(1, 0, 0.086104214, 0.3)
 
 [node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg2" unique_id=1683520111]
 visible = false
-scale = Vector2(69.000015, 4.000001)
+position = Vector2(280.00006, 0)
 sprite_frames = SubResource("SpriteFrames_wkmpr")
 
 [node name="Leg3" type="CollisionShape2D" parent="Attack_2_Area" unique_id=241042437]
@@ -218,7 +204,7 @@ color = Color(1, 0, 0.086104214, 0.3)
 
 [node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg3" unique_id=1657192630]
 visible = false
-scale = Vector2(69.000015, 4.000001)
+position = Vector2(280.00006, 0)
 sprite_frames = SubResource("SpriteFrames_wkmpr")
 
 [node name="Leg4" type="CollisionShape2D" parent="Attack_2_Area" unique_id=50570944]
@@ -237,7 +223,7 @@ color = Color(1, 0, 0.086104214, 0.3)
 
 [node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg4" unique_id=66998939]
 visible = false
-scale = Vector2(69.000015, 4.000001)
+position = Vector2(280.00006, 0)
 sprite_frames = SubResource("SpriteFrames_wkmpr")
 
 [node name="Leg5" type="CollisionShape2D" parent="Attack_2_Area" unique_id=1771370110]
@@ -256,7 +242,8 @@ color = Color(0.5530576, 0.0003280592, 0.583155, 0.3019608)
 
 [node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg5" unique_id=1692852199]
 visible = false
-scale = Vector2(69.000015, 4.000001)
+position = Vector2(128.00003, 0)
+scale = Vector2(1.5200009, 1)
 sprite_frames = SubResource("SpriteFrames_wkmpr")
 
 [node name="Leg6" type="CollisionShape2D" parent="Attack_2_Area" unique_id=483539351]
@@ -275,7 +262,8 @@ color = Color(0.5529412, 0, 0.58431375, 0.3019608)
 
 [node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg6" unique_id=1861542627]
 visible = false
-scale = Vector2(69.000015, 4.000001)
+position = Vector2(64.000015, 0)
+scale = Vector2(1.759999, 1)
 sprite_frames = SubResource("SpriteFrames_wkmpr")
 
 [node name="Leg7" type="CollisionShape2D" parent="Attack_2_Area" unique_id=1142532900]
@@ -295,8 +283,9 @@ color = Color(1, 0, 0.08627451, 0.3019608)
 
 [node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg7" unique_id=144581667]
 visible = false
-position = Vector2(-1.0728836e-06, -1.1920929e-07)
-scale = Vector2(4.312501, 7.000002)
+position = Vector2(-8.000004, -280.00006)
+rotation = 1.5707964
+scale = Vector2(1.1522248, 1.768829)
 sprite_frames = SubResource("SpriteFrames_wkmpr")
 
 [node name="Leg8" type="CollisionShape2D" parent="Attack_2_Area" unique_id=105283287]
@@ -316,6 +305,7 @@ color = Color(1, 0, 0.086104214, 0.3)
 
 [node name="texture" type="AnimatedSprite2D" parent="Attack_2_Area/Leg8" unique_id=257520077]
 visible = false
-position = Vector2(-1.0728836e-06, -1.1920929e-07)
-scale = Vector2(4.312501, 7.000002)
+position = Vector2(-1.0728836e-06, -248.00006)
+rotation = 1.5707964
+scale = Vector2(1, 1.5199997)
 sprite_frames = SubResource("SpriteFrames_wkmpr")

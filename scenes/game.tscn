@@ -286,7 +286,7 @@ libraries/ = SubResource("AnimationLibrary_dinhu")
 position = Vector2(-102, -86)
 
 [node name="Flashlight_item" parent="." unique_id=2133912562 instance=ExtResource("14_ssvqc")]
-position = Vector2(-5, -114)
+position = Vector2(-39, -109)
 
 [node name="FocusAvoidUI" parent="." unique_id=432837236 instance=ExtResource("11_kvpfn")]
 

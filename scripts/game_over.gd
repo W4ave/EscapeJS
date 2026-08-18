@@ -15,3 +15,4 @@ func _on_retry() -> void:
 	
 	global.life = 3
 	global.checkpoint = Vector2(0, -1)
+	global.elapsed_time = 0.0
