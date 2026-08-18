@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cjjuaj3d3c7js" path="res://assets/sprites/slime_purple.png" id="1_ngkcq"]
 [ext_resource type="Script" uid="uid://b224605y3co3x" path="res://scripts/boss_squid.gd" id="1_toscy"]
 [ext_resource type="Texture2D" uid="uid://wus4aglnlek6" path="res://assets/sprites/platforms.png" id="3_q30k2"]
+[ext_resource type="Shader" uid="uid://ck8sxmfdmi1kb" path="res://shader/leg_squeeze_collider.gdshader" id="4_f14jg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_toscy"]
 atlas = ExtResource("1_ngkcq")
@@ -117,6 +118,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_q30k2"]
 radius = 35.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f14jg"]
+shader = ExtResource("4_f14jg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8yodr"]
+shader = ExtResource("4_f14jg")
+
 [node name="BossSquid" type="CharacterBody2D" unique_id=1728815162]
 script = ExtResource("1_toscy")
 
@@ -127,6 +134,7 @@ animation = &"damaged"
 autoplay = "idle"
 
 [node name="UntouchableWall" type="CollisionShape2D" parent="." unique_id=1745826133]
+visible = false
 position = Vector2(0, 14)
 shape = SubResource("RectangleShape2D_van8d")
 
@@ -195,7 +203,6 @@ scale = Vector2(69.000015, 4.000001)
 sprite_frames = SubResource("SpriteFrames_wkmpr")
 
 [node name="Leg3" type="CollisionShape2D" parent="Attack_2_Area" unique_id=241042437]
-visible = false
 position = Vector2(128, 56)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_f14jg")
@@ -215,7 +222,6 @@ scale = Vector2(69.000015, 4.000001)
 sprite_frames = SubResource("SpriteFrames_wkmpr")
 
 [node name="Leg4" type="CollisionShape2D" parent="Attack_2_Area" unique_id=50570944]
-visible = false
 position = Vector2(-128, 56)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_f14jg")
@@ -280,6 +286,7 @@ debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)
 
 [node name="box" type="ColorRect" parent="Attack_2_Area/Leg7" unique_id=372828119]
 visible = false
+material = SubResource("ShaderMaterial_f14jg")
 offset_left = -35.000008
 offset_top = -35.000008
 offset_right = 35.000008
@@ -300,6 +307,7 @@ debug_color = Color(0.9754111, 0, 0.42311692, 0.41960785)
 
 [node name="box" type="ColorRect" parent="Attack_2_Area/Leg8" unique_id=1364590172]
 visible = false
+material = SubResource("ShaderMaterial_8yodr")
 offset_left = -35.000008
 offset_top = -35.000008
 offset_right = 35.000008

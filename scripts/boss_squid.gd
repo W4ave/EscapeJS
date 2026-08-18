@@ -46,7 +46,6 @@ func _ready() -> void:
 		
 	telegraph_time = 0.7
 	active_time = 0.3
-	var is_phase3 = false
 	is_blocking = false
 	is_waiting = false
 	
@@ -85,17 +84,17 @@ func _physics_process(delta: float) -> void:
 		is_waiting = false
 	
 		
-		if global.boss_hp >= 80:
+		if global.boss_hp >= 70:
 			phase = 1
 			
 			patterns = phase1
 			telegraph_time = 0.8
-		elif global.boss_hp >= 50:
+		elif global.boss_hp >= 40:
 			phase = 2
 			
 			patterns = phase2
 			telegraph_time = 0.75
-		elif global.boss_hp >= 20:
+		elif global.boss_hp > 0:
 			phase = 3
 			
 			patterns = phase3
@@ -113,12 +112,13 @@ func _on_hit(body: Node2D) -> void:
 		game.damage_player()
 		global.boss_enable = false
 
-func _on_damaged_area(_body : Node2D) -> void:
-	can_damaged = true
-	print("entered - boss pos: ", global_position, " player pos: ", player.global_position)
+func _on_damaged_area(body : Node2D) -> void:
+	if body.is_in_group("player"):
+		can_damaged = true
 
-func _off_damaged_area(_body : Node2D) -> void:
-	can_damaged = false
+func _off_damaged_area(body : Node2D) -> void:
+	if body.is_in_group("player"):
+		can_damaged = false
 
 func _get_damaged(damage):
 	if can_damaged:
@@ -184,11 +184,11 @@ func execute_squeeze(hitbox: Node):
 	# 2) 예고 시간만큼 대기 (여기서 스프라이트 반짝임, 색깔 변화 등 연출 넣기 좋음)
 	if box:
 		box.visible = true
-		box.scale = Vector2(0,1)
-		var tween = create_tween()
-		tween.tween_property(box, "scale", Vector2.ONE, telegraph_time)
-		await tween.finished
-	await get_tree().create_timer(0.01).timeout
+		box.color = Color("#ff001600")
+		var tween1 = create_tween()
+		tween1.tween_property(box, "color", Color("#ff00164d"), telegraph_time)
+		await tween1.finished
+	await get_tree().create_timer(telegraph_time).timeout
 	
 	# 3) 실제 데미지 판정 켜기
 	if texture and box:

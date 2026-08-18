@@ -9,6 +9,8 @@ signal get_inked
 
 signal boss_dying
 
+signal item_picked_up(item: Node2D)
+
 func damage_player():
 	
 	player_damaged.emit()

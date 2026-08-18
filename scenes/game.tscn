@@ -10,10 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://bnqfgmfi6hv47" path="res://scenes/Enemy.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://yr13aumiwj4n" path="res://scenes/check_point.tscn" id="4_vtaks"]
 [ext_resource type="PackedScene" uid="uid://dycfbl3p07i3g" path="res://scenes/FlashBar.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://bogtk1a28ep0" path="res://scenes/boss_ui.tscn" id="9_ir15t"]
 [ext_resource type="PackedScene" uid="uid://5us8l5u6qe0" path="res://scenes/boss_squid.tscn" id="11_dinhu"]
 [ext_resource type="PackedScene" uid="uid://b53loay45qskw" path="res://scenes/focus_avoid_ui.tscn" id="11_kvpfn"]
 [ext_resource type="Script" uid="uid://kppjuulr1285" path="res://scripts/ink_ui.gd" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://cmf2jh08at0fe" path="res://scenes/item_hammer.tscn" id="13_rysoc"]
+[ext_resource type="PackedScene" uid="uid://c8x76ichbyi3m" path="res://scenes/item_flashlight.tscn" id="14_ssvqc"]
 [ext_resource type="AudioStream" uid="uid://c40ujx2c8kpkm" path="res://assets/music/time_for_adventure.mp3" id="14_trtic"]
+[ext_resource type="Texture2D" uid="uid://bduaf7jfmqbbj" path="res://assets/sprites/Ink_UI.png" id="15_ca42v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vtaks"]
 vertices = PackedVector2Array(401, 95, 401, 177, 369, 177, 223, 95, 223, 193, 369, 193, 527, -1, 561, -1, 561, 33, 545, 33, 527, 31, 545, 49, 513, 49, 511, 31, 511, 65, 513, 65, -113, 95, -113, -47, -95, 81, -95, 113, -273, 113, -175, 95, -273, 81, -175, -47, -63, -97, -63, -47, -79, -47, -321, -97, -79, 33, -95, 33, -95, 79, -63, 79, -63, 81, -321, -33, -353, 81, -353, 65, -369, 65, -369, 63, -353, 63, -353, 17, -369, 17, -369, 15, -353, 15, -337, -17, -353, -17, -337, -33)
@@ -252,6 +256,8 @@ layer_0/tile_data = PackedInt32Array(-65540, 0, 1, -4, 0, 1, 65532, 0, 1, 131068
 
 [node name="StaminaBar" parent="." unique_id=1370015477 instance=ExtResource("4_iywne")]
 
+[node name="Boss_UI" parent="." unique_id=1227655913 instance=ExtResource("9_ir15t")]
+
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1818554032]
 visible = false
 color = Color(0.0032739982, 0, 0.15667373, 1)
@@ -276,6 +282,12 @@ position = Vector2(-305, 265)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1667944953]
 libraries/ = SubResource("AnimationLibrary_dinhu")
 
+[node name="Hammer_item" parent="." unique_id=1978465742 instance=ExtResource("13_rysoc")]
+position = Vector2(-102, -86)
+
+[node name="Flashlight_item" parent="." unique_id=2133912562 instance=ExtResource("14_ssvqc")]
+position = Vector2(-5, -114)
+
 [node name="FocusAvoidUI" parent="." unique_id=432837236 instance=ExtResource("11_kvpfn")]
 
 [node name="Ink_spread" type="CanvasLayer" parent="." unique_id=1422048245]
@@ -286,6 +298,12 @@ script = ExtResource("13_kvuet")
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.14733289, 0.14733289, 0.14733289, 0.762)
+
+[node name="TextureRect" type="TextureRect" parent="Ink_spread" unique_id=942149691]
+offset_right = 1144.0
+offset_bottom = 641.0
+texture = ExtResource("15_ca42v")
+expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=616785155]
 stream = ExtResource("14_trtic")

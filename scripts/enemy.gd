@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var speed: float = 50.0
-const SPEED : float = 50.0
+@export var speed: float = 75.0
+const SPEED : float = 75.0
 
 var temp_slowdown : int
 

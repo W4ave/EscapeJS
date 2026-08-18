@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bogtk1a28ep0"]
+
+[ext_resource type="Script" uid="uid://bmhti4wigptcu" path="res://scripts/boss_ui.gd" id="1_b66mi"]
+[ext_resource type="FontFile" uid="uid://d37j3eksc01qg" path="res://assets/fonts/Galmuri7.ttf" id="2_b66mi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x7eb4"]
+bg_color = Color(0, 0, 0, 0.162)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3x7t"]
+bg_color = Color(0.9142925, 0, 0.11249945, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.16078432)
+
+[node name="Boss_UI" type="CanvasLayer" unique_id=1227655913]
+script = ExtResource("1_b66mi")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=907500363]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -297.0625
+offset_top = 55.0
+offset_right = 297.0625
+offset_bottom = 76.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_x7eb4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b3x7t")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="." unique_id=835216392]
+offset_left = 282.0
+offset_top = 19.0
+offset_right = 516.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.27600002)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("2_b66mi")
+theme_override_font_sizes/font_size = 25
+text = "4m 대왕 	오징어"

@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://cmf2jh08at0fe"]
+
+[ext_resource type="Script" uid="uid://d0ajvnyd8iia" path="res://scripts/items.gd" id="1_5ll3l"]
+[ext_resource type="Texture2D" uid="uid://caehbqfro0sj5" path="res://assets/sprites/Hammer_item.png" id="1_ktjff"]
+[ext_resource type="Texture2D" uid="uid://cplcpsq3wap7l" path="res://assets/sprites/click_UI.png" id="3_3exo5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ll3l"]
+atlas = ExtResource("1_ktjff")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3exo5"]
+atlas = ExtResource("1_ktjff")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ka26s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ll3l")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3exo5")
+}],
+"loop": true,
+"name": &"near",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i6dro"]
+radius = 38.0
+
+[sub_resource type="Animation" id="Animation_3exo5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i6dro"]
+resource_name = "idle"
+length = 2.0079324
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sd71n"]
+_data = {
+&"RESET": SubResource("Animation_3exo5"),
+&"idle": SubResource("Animation_i6dro")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6dro"]
+atlas = ExtResource("3_3exo5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd71n"]
+atlas = ExtResource("3_3exo5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jm1nb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6dro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd71n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Hammer_item" type="Area2D" unique_id=1978465742]
+script = ExtResource("1_5ll3l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=992399548]
+sprite_frames = SubResource("SpriteFrames_ka26s")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1630190627]
+shape = SubResource("CircleShape2D_i6dro")
+debug_color = Color(0.8987799, 0.97859687, 1, 0.042000003)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2074393211]
+libraries/ = SubResource("AnimationLibrary_sd71n")
+autoplay = &"idle"
+
+[node name="clickUI" type="AnimatedSprite2D" parent="." unique_id=1643566877]
+position = Vector2(0, -23)
+sprite_frames = SubResource("SpriteFrames_jm1nb")
+autoplay = "default"
+frame_progress = 0.26268265

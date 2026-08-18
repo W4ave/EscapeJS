@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
-const RUN_SPEED = 150.0
+const SPEED = 70.0
+const RUN_SPEED = 100.0
 
-var speed = 100.0
-var run_speed = 150.0
+var speed = 60.0
+var run_speed = 100.0
 var direction := Vector2.ZERO
 var light_level = 0
-var light_loss = 5
+var light_loss = 1
 
 var temp_slowdown : int
 
@@ -18,8 +18,12 @@ var dash_timer = 0.0
 
 var is_attacking : bool
 var attack_timer = 0.0
-const ATTACK_TIME = 0.7            #쿨타임
+const ATTACK_TIME = 0.5            #쿨타임
 const ATTACK_DAMAGE : int = 10
+
+var is_surprising : bool
+const SURPRISE_TIME = 0.1
+var surprise_timer = 0.0
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var flashlight: PointLight2D = $Flashlight
@@ -111,6 +115,18 @@ func _physics_process(delta: float) -> void:
 		if dash_timer <= 0:
 			is_dashing = false
 			velocity = Vector2.ZERO
+			is_surprising = true          # 추가
+			surprise_timer = SURPRISE_TIME
+			
+		return                            # 추가
+
+	if is_surprising:                     # 추가된 블록 전체
+		surprise_timer -= delta
+		velocity = velocity.move_toward(Vector2.ZERO, speed)
+		move_and_slide()
+		if surprise_timer <= 0:
+			is_surprising = false
+		return
 	
 	elif !global.focus_state:
 		direction = Input.get_vector("move_a", "move_d", "move_w", "move_s")
@@ -126,25 +142,26 @@ func _physics_process(delta: float) -> void:
 
 	# ----------- [ stamina ] -------------
 	if Input.is_action_pressed("sprint") and direction.length() > 0:
-		global.stamina -= 50 * (delta / global.slowdown)
+		global.stamina -= 15 * (delta / global.slowdown)
 	else:
-		global.stamina += 20 * (delta / global.slowdown)
+		global.stamina += 10 * (delta / global.slowdown)
 
 	# ----------- [ anime ] -------------
 	if direction != Vector2.ZERO:
 		if is_sprinting:
 			velocity = direction * run_speed
-			anim.speed_scale = 2.0 / global.slowdown
+			anim.play("run")
+			anim.speed_scale = 1.0 / global.slowdown
 		else:
 			velocity = direction * speed
 			anim.speed_scale = 1.0 / global.slowdown
+			anim.play("walk")
 
 		if direction.x > 0:
 			anim.flip_h = false
 		elif direction.x < 0:
 			anim.flip_h = true
 
-		anim.play("walk")
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, speed)
 		anim.speed_scale = 1.0 / global.slowdown
@@ -173,7 +190,7 @@ func _process(delta: float) -> void:
 				flashlight.visible = true
 				flashlight.texture_scale = 1.0
 				flashlight.energy = 1.0
-				light_loss = 0
+				light_loss = 1
 			2:
 				flashlight.texture_scale = 1.4
 				flashlight.energy = 1.5
@@ -186,7 +203,9 @@ func _input(event):
 		light_level += 1
 		
 		
-	if event.is_action_pressed("mouse_left"):        #_physics_process에서 쿨타임 처리
+	if event.is_action_pressed("mouse_left"):
+		
+				#_physics_process에서 쿨타임 처리
 		if !is_attacking:
 			game.attack(ATTACK_DAMAGE)
 			attack_timer = ATTACK_TIME
@@ -206,5 +225,11 @@ func _input(event):
 			dash_direction = (global_position - Enemy.global_position).normalized()
 			is_dashing = true
 			dash_timer = DASH_TIME
+			if dash_direction.x <= 0:
+				anim.flip_h = false
+			else:
+				anim.flip_h = true
+			anim.play("surprising")
 			game.unfocusing()
+			
 			
