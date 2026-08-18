@@ -181,6 +181,7 @@ sprite_frames = SubResource("SpriteFrames_0d0nc")
 animation = &"walk"
 
 [node name="Flashlight" type="PointLight2D" parent="." unique_id=607959920]
+position = Vector2(4, 17)
 color = Color(0.9372549, 1, 0.98039216, 1)
 texture = SubResource("GradientTexture2D_3li8b")
 texture_scale = 3.0
