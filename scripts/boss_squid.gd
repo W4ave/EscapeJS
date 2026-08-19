@@ -70,12 +70,15 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if global.boss_enable:
-		if global_position.distance_to(player.global_position) <= 80:
-			patterns.append(biting_pattern)
-		elif patterns.count(biting_pattern) != 0:
-			patterns.erase(biting_pattern)
 		if is_waiting:
 			return
+
+		if global_position.distance_to(player.global_position) <= 80:
+			if patterns.count(biting_pattern) == 0:
+				patterns.append(biting_pattern)
+		elif patterns.count(biting_pattern) != 0:
+			patterns.erase(biting_pattern)
+
 		is_waiting = true
 		await get_tree().create_timer(randf_range(0.2, 0.6)).timeout
 		if phase >= 2 and !is_blocking:
