@@ -96,6 +96,7 @@ animations = [{
 
 [node name="Flashlight_item" type="Area2D" unique_id=1978465742]
 script = ExtResource("1_d043g")
+item_id = "flashlight"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=992399548]
 scale = Vector2(0.65625, 0.65625)

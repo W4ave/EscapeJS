@@ -1,6 +1,8 @@
 # item.gd
 extends Area2D
 
+@export var item_id : String = ""   #어떤 아이템인지 구분 ("hammer", "flashlight" 등)
+
 @onready var game = get_tree().current_scene
 @onready var texture = $AnimatedSprite2D
 @onready var clickUI = $clickUI

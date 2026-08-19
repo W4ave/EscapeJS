@@ -30,6 +30,7 @@ func _process(delta: float) -> void:
 
 # 시간을 00:00.00 형식으로 변환
 func format_time(time: float) -> String:
+	@warning_ignore("integer_division")
 	var minutes = int(time) / 60
 	var seconds = int(time) % 60
 	var milliseconds = int(time * 100) % 100

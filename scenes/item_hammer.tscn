@@ -96,6 +96,7 @@ animations = [{
 
 [node name="Hammer_item" type="Area2D" unique_id=1978465742]
 script = ExtResource("1_5ll3l")
+item_id = "hammer"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=992399548]
 sprite_frames = SubResource("SpriteFrames_ka26s")

@@ -5,9 +5,14 @@ var stamina: float = 100.0    #달리기 스태미나%
 var life = 3
 var current_stage = 0
 
-var get_flashlight = true
+var get_flashlight = false   #플래시라이트 아이템을 먹기 전까지는 손전등 사용 불가
 var enemy_enable = false
 var boss_enable = false
+
+var has_hammer = false                  #망치 습득 여부
+const HAMMER_DAMAGE : int = 5           #망치 공격 데미지
+const HAMMER_COOLDOWN_TIME : float = 1.0   #망치 쿨타임(초)
+var hammer_cooldown_left : float = 0.0     #현재 남은 쿨타임(초)
 
 var obtainable_item : String
 

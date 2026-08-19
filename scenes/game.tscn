@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://dxaw2gjjupyah" path="res://scenes/map.tscn" id="5_264po"]
 [ext_resource type="PackedScene" uid="uid://dycfbl3p07i3g" path="res://scenes/FlashBar.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://bogtk1a28ep0" path="res://scenes/boss_ui.tscn" id="9_ir15t"]
+[ext_resource type="PackedScene" uid="uid://d7hqxmvlgty2b" path="res://scenes/HammerUI.tscn" id="9_hmui4"]
+[ext_resource type="PackedScene" uid="uid://c4flui1cnl2rk" path="res://scenes/FlashlightUI.tscn" id="9_flui5"]
 [ext_resource type="PackedScene" uid="uid://5us8l5u6qe0" path="res://scenes/boss_squid.tscn" id="11_dinhu"]
 [ext_resource type="PackedScene" uid="uid://b53loay45qskw" path="res://scenes/focus_avoid_ui.tscn" id="11_kvpfn"]
 [ext_resource type="Script" uid="uid://kppjuulr1285" path="res://scripts/ink_ui.gd" id="13_kvuet"]
@@ -260,6 +262,9 @@ layer_0/tile_data = PackedInt32Array(-65540, 0, 1, -4, 0, 1, 65532, 0, 1, 131068
 [node name="StaminaBar" parent="." unique_id=1370015477 instance=ExtResource("4_iywne")]
 
 [node name="Boss_UI" parent="." unique_id=1227655913 instance=ExtResource("9_ir15t")]
+
+[node name="HammerUI" parent="." unique_id=3971204568 instance=ExtResource("9_hmui4")]
+[node name="FlashlightUI" parent="." unique_id=3971204569 instance=ExtResource("9_flui5")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1818554032]
 visible = false

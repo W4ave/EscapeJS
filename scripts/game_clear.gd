@@ -27,6 +27,21 @@ func _on_name_submitted(text: String) -> void:
 func _on_restart_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	queue_free()
+	
+	# 새로 시작하는 판이므로 목숨/아이템/보스 관련 상태를 전부 초기화
+	global.life = 3
+	global.checkpoint = Vector2(0, -1)
+	global.elapsed_time = 0.0
+	global.get_flashlight = false
+	global.has_hammer = false
+	global.stamina = 100.0
+	global.light_charge = 100.0
+	global.enemy_enable = false
+	global.boss_enable = false
+	global.boss_hp = 100.0
+	global.hammer_cooldown_left = 0.0
+	global.focus_state = false
+	global.slowdown = 1
 
 func _on_name_button_pressed() -> void:
 	restart_button.text = "처음으로"
@@ -84,6 +99,7 @@ func load_records() -> Array:
 
 
 func format_time(time: float) -> String:
+	@warning_ignore("integer_division")
 	var minutes = int(time) / 60
 	var seconds = int(time) % 60
 	var milliseconds = int(time * 100) % 100

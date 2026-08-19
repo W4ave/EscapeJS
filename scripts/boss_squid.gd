@@ -106,6 +106,7 @@ func _physics_process(delta: float) -> void:
 func _on_inked(body: Node2D) -> void:
 	if body.is_in_group("player") and global.boss_enable:
 		game.ink_screen()
+		game.shake_camera(9.0, 0.3)
 
 func _on_hit(body: Node2D) -> void:
 	if body.is_in_group("player") and global.boss_enable:
@@ -124,6 +125,7 @@ func _get_damaged(damage):
 	if can_damaged:
 		global.boss_hp -= damage
 		print(global.boss_hp)
+		game.shake_camera(5.0, 0.15)
 		anim.play("damaged")
 		await anim.animation_finished
 		anim.play("idle")
@@ -133,6 +135,7 @@ func _get_damaged(damage):
 
 func _death():
 	global.boss_enable = false
+	game.shake_camera(20.0, 0.6)
 
 func choose_pattern() -> void:
 	var chosen_func = patterns.pick_random()
@@ -164,6 +167,7 @@ func execute_attack(hitbox: Node):
 		texture.visible = true
 		box.visible = false
 	hitbox.disabled = false
+	game.shake_camera(6.0, 0.25)
 	
 	# 4) 판정이 켜져있는 시간만큼 대기
 	await get_tree().create_timer(active_time).timeout
@@ -195,6 +199,7 @@ func execute_squeeze(hitbox: Node):
 		texture.visible = true
 		box.visible = false
 	hitbox.disabled = false
+	game.shake_camera(7.0, 0.28)
 	
 	# 4) 판정이 켜져있는 시간만큼 대기
 	await get_tree().create_timer(active_time).timeout
@@ -253,6 +258,7 @@ func blocking_pattern(hitbox : Node2D):
 		texture.visible = true
 		box.visible = false
 	hitbox.disabled = false
+	game.shake_camera(3.0, 0.15)
 	
 	# 4) 판정이 켜져있는 시간만큼 대기
 	await get_tree().create_timer(5).timeout

@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4flui1cnl2rk"]
+
+[ext_resource type="Script" path="res://scripts/flashlight_ui.gd" id="1_flui1"]
+[ext_resource type="Texture2D" uid="uid://c0ml4l801aw2m" path="res://assets/sprites/flashlight_item.png" id="2_flui2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flui3"]
+atlas = ExtResource("2_flui2")
+region = Rect2(0, 0, 32, 32)
+
+[node name="FlashlightUI" type="CanvasLayer" unique_id=3971204569]
+script = ExtResource("1_flui1")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -74.0
+offset_right = -82.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="BG" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 58.0
+offset_bottom = 58.0
+
+[node name="Icon" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 52.0
+offset_bottom = 52.0
+texture = SubResource("AtlasTexture_flui3")
+expand_mode = 1
+stretch_mode = 5

@@ -3,6 +3,8 @@ extends CharacterBody2D
 const SPEED = 70.0
 const RUN_SPEED = 100.0
 
+const HAMMER_SWING_SCRIPT = preload("res://scripts/hammer_swing.gd")
+
 var speed = 60.0
 var run_speed = 100.0
 var direction := Vector2.ZERO
@@ -18,8 +20,8 @@ var dash_timer = 0.0
 
 var is_attacking : bool
 var attack_timer = 0.0
-const ATTACK_TIME = 0.5            #쿨타임
-const ATTACK_DAMAGE : int = 10
+@onready var ATTACK_TIME : float = global.HAMMER_COOLDOWN_TIME   #망치 쿨타임(초), global과 동일한 값 사용
+@onready var ATTACK_DAMAGE : int = global.HAMMER_DAMAGE           #망치 데미지, global과 동일한 값 사용
 
 var is_surprising : bool
 const SURPRISE_TIME = 0.1
@@ -36,6 +38,11 @@ const CONE_ANGLE_DEG = 30.0
 const CONE_RADIUS = 120
 const CONE_SOFTNESS = 0.2
 
+# ----------- [ camera shake ] -------------
+var shake_strength : float = 0.0
+var shake_duration : float = 0.0
+var shake_timer : float = 0.0
+
 
 
 func _ready() -> void:
@@ -46,6 +53,7 @@ func _ready() -> void:
 	flashlight.offset = Vector2.ZERO
 	game.connect("focus_attacked", Callable(self, "focus_avoid"))
 	game.connect("make_unfocus", Callable(self, "unfocus_avoid"))
+	game.connect("screen_shake", Callable(self, "_on_screen_shake"))
 	
 
 func focus_avoid():
@@ -56,6 +64,13 @@ func focus_avoid():
 		
 	#camera.zoom = focused_zoom
 	anim_player.play("focused_camera")
+
+func _on_screen_shake(strength: float, duration: float) -> void:
+	# 더 강한 흔들림이 오면 갱신, 약한 흔들림이 겹치면 진행 중인 흔들림을 유지
+	if strength >= shake_strength or shake_timer <= 0.0:
+		shake_strength = strength
+		shake_duration = max(duration, 0.001)
+		shake_timer = duration
 
 func unfocus_avoid():
 	if speed != SPEED and run_speed != RUN_SPEED:
@@ -106,6 +121,14 @@ func _create_cone_texture(radius: int, half_angle_deg: float, softness: float) -
 
 	return ImageTexture.create_from_image(img)
 
+func _spawn_hammer_swing() -> void:
+	var swing := Node2D.new()
+	swing.set_script(HAMMER_SWING_SCRIPT)
+	swing.global_position = global_position
+	swing.rotation = (get_global_mouse_position() - global_position).angle()
+	game.add_child(swing)
+	game.shake_camera(4.0, 0.12)
+
 func _physics_process(delta: float) -> void:
 	if is_dashing:
 		velocity = dash_direction * 150
@@ -133,9 +156,11 @@ func _physics_process(delta: float) -> void:
 
 	if is_attacking:
 		attack_timer -= delta
+		global.hammer_cooldown_left = max(attack_timer, 0.0)
 		
 		if attack_timer <= 0:
 			is_attacking = false
+			global.hammer_cooldown_left = 0.0
 		
 
 	var is_sprinting = Input.is_action_pressed("sprint") and global.stamina > 0
@@ -198,6 +223,16 @@ func _process(delta: float) -> void:
 
 		flashlight.rotation = (get_global_mouse_position() - global_position).angle()
 
+	# ----------- [ camera shake ] -------------
+	if shake_timer > 0.0:
+		shake_timer -= delta
+		var t = clamp(shake_timer / shake_duration, 0.0, 1.0)
+		var power = shake_strength * t
+		camera.offset = Vector2(randf_range(-1.0, 1.0), randf_range(-1.0, 1.0)) * power
+	else:
+		shake_strength = 0.0
+		camera.offset = camera.offset.lerp(Vector2.ZERO, 0.3)
+
 func _input(event):
 	if global.get_flashlight and event.is_action_pressed("turn_flashlight"):
 		light_level += 1
@@ -206,10 +241,12 @@ func _input(event):
 	if event.is_action_pressed("mouse_left"):
 		
 				#_physics_process에서 쿨타임 처리
-		if !is_attacking:
+		if global.has_hammer and !is_attacking:
 			game.attack(ATTACK_DAMAGE)
 			attack_timer = ATTACK_TIME
+			global.hammer_cooldown_left = ATTACK_TIME
 			is_attacking = true
+			_spawn_hammer_swing()
 		
 	if event.is_action_pressed("ui_up"):       #적 활성화 기능 테스트
 		global.enemy_enable = true
