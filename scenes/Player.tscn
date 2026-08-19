@@ -175,6 +175,7 @@ texture = SubResource("GradientTexture2D_3li8b")
 [node name="CircleFlashlight" type="PointLight2D" parent="." unique_id=2073868107]
 position = Vector2(1, -12)
 color = Color(0.82078886, 0.9999998, 0.91787386, 1)
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_mdl7e")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1513917210]

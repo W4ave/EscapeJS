@@ -262,7 +262,6 @@ layer_0/tile_data = PackedInt32Array(-65540, 0, 1, -4, 0, 1, 65532, 0, 1, 131068
 [node name="Boss_UI" parent="." unique_id=1227655913 instance=ExtResource("9_ir15t")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1818554032]
-visible = false
 color = Color(0.0032739982, 0, 0.15667373, 1)
 
 [node name="Player" parent="." unique_id=320546620 instance=ExtResource("1_uwrxv")]
@@ -277,7 +276,7 @@ zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="Enemy" parent="." unique_id=1001022762 instance=ExtResource("4_lbhrr")]
-position = Vector2(-165, -51)
+position = Vector2(1539, -105)
 
 [node name="BossSquid" parent="." unique_id=1728815162 instance=ExtResource("11_dinhu")]
 position = Vector2(-305, 265)
@@ -286,10 +285,10 @@ position = Vector2(-305, 265)
 libraries/ = SubResource("AnimationLibrary_dinhu")
 
 [node name="Hammer_item" parent="." unique_id=1978465742 instance=ExtResource("13_rysoc")]
-position = Vector2(-102, -86)
+position = Vector2(-102, -96)
 
 [node name="Flashlight_item" parent="." unique_id=2133912562 instance=ExtResource("14_ssvqc")]
-position = Vector2(-39, -109)
+position = Vector2(-39, -124)
 
 [node name="FocusAvoidUI" parent="." unique_id=432837236 instance=ExtResource("11_kvpfn")]
 
