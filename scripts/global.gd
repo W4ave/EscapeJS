@@ -18,7 +18,7 @@ var obtainable_item : String
 
 var boss_hp : float = 100.0
 
-var checkpoint : Vector2 = Vector2(10,-1500) #(-800, -4000)         #(-30, -1500)    #= Vector2(0,-1)
+var checkpoint : Vector2 = Vector2(0, -1) #(-800, -4000)         #(-30, -1500)    #= Vector2(0,-1)
 var elapsed_time: float = 0.0
 var focus_state = false
 

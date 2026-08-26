@@ -385,7 +385,6 @@ target_marker = NodePath("../two2one")
 [node name="MessageUI" parent="." unique_id=2068788670 instance=ExtResource("15_msgui")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1818554032]
-visible = false
 color = Color(0.0032739982, 0, 0.15667373, 1)
 
 [node name="BreakableStructure" parent="." unique_id=1218108402 instance=ExtResource("16_pl11u")]
