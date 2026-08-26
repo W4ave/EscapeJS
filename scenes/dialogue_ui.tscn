@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://cp55txu2snph7"]
+
+[ext_resource type="Script" uid="uid://bfe8un2byiadi" path="res://scripts/dialogue_ui.gd" id="2_script"]
+[ext_resource type="FontFile" uid="uid://7dh61877sxnr" path="res://assets/fonts/Galmuri11.ttf" id="3_jx1sv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogue"]
+bg_color = Color(0, 0, 0, 0.586)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="DialogueUI" type="CanvasLayer" unique_id=1146931604]
+layer = 10
+script = ExtResource("2_script")
+
+[node name="Control" type="Control" parent="." unique_id=449971912]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="Control" unique_id=440586943]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -560.5
+offset_top = -146.0
+offset_right = 558.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialogue")
+
+[node name="Label" type="Label" parent="Control/Panel" unique_id=528124204]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 14.0
+offset_right = -20.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_jx1sv")
+theme_override_font_sizes/font_size = 32
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="Control/Panel" unique_id=288476719]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 752.5
+offset_top = 106.0
+offset_right = -68.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_jx1sv")
+theme_override_font_sizes/font_size = 16
+text = "[스페이스바]를 눌러 다음으로"
+autowrap_mode = 2

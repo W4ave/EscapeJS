@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c8n0y2j5l0k1a"]
+
+[ext_resource type="Script" uid="uid://cib1fxl2x36hy" path="res://scripts/stairs.gd" id="1_stairs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stairs1"]
+size = Vector2(62.5, 67)
+
+[node name="Stairs" type="Area2D" unique_id=168609823]
+script = ExtResource("1_stairs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=334973292]
+shape = SubResource("RectangleShape2D_stairs1")

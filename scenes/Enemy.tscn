@@ -51,7 +51,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ipns3")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -68,7 +68,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c4w8v")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_side",
 "speed": 5.0
 }]
@@ -150,7 +150,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ly5gv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"emit",
 "speed": 5.0
 }, {
@@ -161,7 +161,7 @@ animations = [{
 "duration": 2.5,
 "texture": SubResource("AtlasTexture_1gqeq")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -184,13 +184,16 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_ksmwx")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk_side",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nenq2"]
 size = Vector2(14, 3)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2uf3"]
+radius = 30.066593
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1352307495]
 position = Vector2(0, -1)
@@ -227,3 +230,10 @@ navigation_layers = 3
 radius = 178.53
 debug_enabled = true
 debug_path_custom_line_width = 1.0
+
+[node name="interaction" type="Area2D" parent="." unique_id=801494099]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction" unique_id=645952397]
+shape = SubResource("CircleShape2D_n2uf3")
+debug_color = Color(0.98538655, 0, 0.33889744, 0.41960785)

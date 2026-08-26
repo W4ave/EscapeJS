@@ -6,6 +6,12 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		# 타이머 노드 가져와서 클리어 처리
-		get_tree().current_scene.get_node("Timer").on_game_clear()
+	if not body.is_in_group("player"):
+		return
+
+	# 보스가 아직 활성화된 상태(전투 중)라면 클리어 판정이 나지 않게 막기
+	if global.boss_enable:
+		return
+
+	# 타이머 노드 가져와서 클리어 처리
+	get_tree().current_scene.get_node("Timer").on_game_clear()

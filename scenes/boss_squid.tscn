@@ -1,72 +1,51 @@
 [gd_scene format=3 uid="uid://5us8l5u6qe0"]
 
-[ext_resource type="Texture2D" uid="uid://cjjuaj3d3c7js" path="res://assets/sprites/slime_purple.png" id="1_ngkcq"]
 [ext_resource type="Script" uid="uid://b224605y3co3x" path="res://scripts/boss_squid.gd" id="1_toscy"]
+[ext_resource type="Texture2D" uid="uid://d0i70hvxwsmmy" path="res://assets/sprites/tanner-joseph-peck-giant-squid-1-png.png" id="2_f14jg"]
 [ext_resource type="Texture2D" uid="uid://boyei8arl2dg1" path="res://assets/sprites/squid_tentacle.png" id="3_f14jg"]
 [ext_resource type="Shader" uid="uid://ck8sxmfdmi1kb" path="res://shader/leg_squeeze_collider.gdshader" id="4_f14jg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_toscy"]
-atlas = ExtResource("1_ngkcq")
-region = Rect2(0, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q30k2"]
-atlas = ExtResource("1_ngkcq")
-region = Rect2(24, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f14jg"]
-atlas = ExtResource("1_ngkcq")
-region = Rect2(48, 48, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8yodr"]
-atlas = ExtResource("1_ngkcq")
-region = Rect2(72, 48, 24, 24)
+atlas = ExtResource("2_f14jg")
+region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6kbtp"]
-atlas = ExtResource("1_ngkcq")
-region = Rect2(0, 0, 24, 24)
+atlas = ExtResource("2_f14jg")
+region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7o0rm"]
-atlas = ExtResource("1_ngkcq")
-region = Rect2(24, 0, 24, 24)
+atlas = ExtResource("2_f14jg")
+region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cdo51"]
-atlas = ExtResource("1_ngkcq")
-region = Rect2(48, 0, 24, 24)
+atlas = ExtResource("2_f14jg")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ijren"]
-atlas = ExtResource("1_ngkcq")
-region = Rect2(72, 0, 24, 24)
+atlas = ExtResource("2_f14jg")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_seprr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_toscy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q30k2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f14jg")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_8yodr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kbtp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7o0rm")
 }],
 "loop": 0,
 "name": &"damaged",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6kbtp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7o0rm")
-}, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_cdo51")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_ijren")
 }],
 "loop": 1,
@@ -78,7 +57,7 @@ animations = [{
 size = Vector2(384, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ngkcq"]
-size = Vector2(88, 20)
+size = Vector2(184, 20)
 
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_q30k2"]
 points = PackedVector2Array(0, 0, 280, 32, 280, -32)
@@ -114,9 +93,10 @@ shader = ExtResource("4_f14jg")
 script = ExtResource("1_toscy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1599408345]
-scale = Vector2(4, 4)
+position = Vector2(-1.9073486e-06, -40)
+scale = Vector2(3.25, 3.25)
 sprite_frames = SubResource("SpriteFrames_seprr")
-animation = &"damaged"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="UntouchableWall" type="CollisionShape2D" parent="." unique_id=1745826133]
@@ -127,7 +107,7 @@ shape = SubResource("RectangleShape2D_van8d")
 [node name="DamagedArea" type="Area2D" parent="." unique_id=100274521]
 
 [node name="damagedcollision" type="CollisionShape2D" parent="DamagedArea" unique_id=1903077316]
-position = Vector2(0, 56)
+position = Vector2(-4, 56)
 shape = SubResource("RectangleShape2D_ngkcq")
 debug_color = Color(0.9999978, 0.5594638, 0.49453515, 0.41960785)
 

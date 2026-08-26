@@ -46,6 +46,8 @@ var shake_timer : float = 0.0
 
 
 func _ready() -> void:
+	
+	
 	is_dashing = false
 	global.focus_state = false
 	position = global.checkpoint
@@ -54,6 +56,9 @@ func _ready() -> void:
 	game.connect("focus_attacked", Callable(self, "focus_avoid"))
 	game.connect("make_unfocus", Callable(self, "unfocus_avoid"))
 	game.connect("screen_shake", Callable(self, "_on_screen_shake"))
+	
+	game.show_dialogue1(["...지금 몇 시지?","왜 이렇게 어두워…?", "설마 다 간 거야?", "……일단 집부터 가야겠다."
+])
 	
 
 func focus_avoid():
@@ -131,7 +136,7 @@ func _spawn_hammer_swing() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_dashing:
-		velocity = dash_direction * 150
+		velocity = dash_direction * 450
 		move_and_slide()
 		
 		dash_timer -= delta
@@ -149,6 +154,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		if surprise_timer <= 0:
 			is_surprising = false
+			global.enemy_enable = true
 		return
 	
 	elif !global.focus_state:
@@ -236,7 +242,10 @@ func _process(delta: float) -> void:
 func _input(event):
 	if global.get_flashlight and event.is_action_pressed("turn_flashlight"):
 		light_level += 1
-		
+	
+	# 아무 곳이나 마우스 좌클릭했을 때, Enemy의 interaction 범위 안이면 focus_attack 발동
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		Enemy.try_focus_attack()
 		
 	if event.is_action_pressed("mouse_left"):
 		

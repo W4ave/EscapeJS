@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://bi3x7rmvsnrqq"]
+
+[ext_resource type="FontFile" uid="uid://y33dttqvvkxq" path="res://assets/fonts/Galmuri14.ttf" id="1_font"]
+[ext_resource type="Script" uid="uid://c4ut7wngwbwov" path="res://scripts/boss_intro_ui.gd" id="2_script"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0, 0, 0, 0.8)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="BossIntroUI" type="CanvasLayer" unique_id=1409740469]
+layer = 10
+script = ExtResource("2_script")
+
+[node name="Control" type="Control" parent="." unique_id=1459033462]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control" unique_id=1705512878]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -160.0
+offset_right = 220.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel" unique_id=167000219]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -130.0
+offset_right = 190.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Control/Panel/VBoxContainer" unique_id=1280897407]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 24
+text = "보스전 안내"
+horizontal_alignment = 1
+
+[node name="Body" type="Label" parent="Control/Panel/VBoxContainer" unique_id=270727514]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 16
+text = "달리기 : Shift
+망치 공격 : 마우스 좌클릭 
+
+보스의 공격 패턴을 눈으로 보고 미리 피하세요.
+빈틈이 보일 때 가까이 붙고 
+망치로 공격하세요!"
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="Control/Panel/VBoxContainer" unique_id=778777639]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+text = "시작하기"

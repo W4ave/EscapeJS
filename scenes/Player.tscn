@@ -72,7 +72,7 @@ animations = [{
 "duration": 2.5,
 "texture": SubResource("AtlasTexture_mdl7e")
 }],
-"loop": true,
+"loop": 1,
 "name": &"idle",
 "speed": 5.0
 }, {
@@ -95,7 +95,7 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_6eyey")
 }],
-"loop": true,
+"loop": 1,
 "name": &"run",
 "speed": 5.0
 }, {
@@ -109,7 +109,7 @@ animations = [{
 "duration": 3.0,
 "texture": SubResource("AtlasTexture_lkdrv")
 }],
-"loop": false,
+"loop": 0,
 "name": &"surprising",
 "speed": 5.0
 }, {
@@ -126,7 +126,7 @@ animations = [{
 "duration": 0.9,
 "texture": SubResource("AtlasTexture_jfpux")
 }],
-"loop": true,
+"loop": 1,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -175,6 +175,7 @@ texture = SubResource("GradientTexture2D_3li8b")
 [node name="CircleFlashlight" type="PointLight2D" parent="." unique_id=2073868107]
 position = Vector2(1, -12)
 color = Color(0.82078886, 0.9999998, 0.91787386, 1)
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_mdl7e")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1513917210]

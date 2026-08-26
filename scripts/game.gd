@@ -10,6 +10,8 @@ signal get_inked
 signal boss_dying
 
 signal item_picked_up(item: Node2D)
+signal show_message(text: String)
+signal show_dialogue(lines: Array)
 
 # ----------- [ camera shake ] -------------
 # strength: 흔들리는 최대 픽셀 세기, duration: 지속 시간(초)
@@ -59,3 +61,9 @@ func attack(damage):
 func boss_dead():
 	shake_camera(22.0, 0.6)
 	emit_signal("boss_dying")
+
+func show_message1(text: String) -> void:
+	emit_signal("show_message", text)
+
+func show_dialogue1(lines: Array) -> void:
+	emit_signal("show_dialogue", lines)
